@@ -1,5 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   Platform,
@@ -12,7 +13,19 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
-const MantrasScreen = (props) => {
+import getTodos from '../actions/httpRequests';
+
+const todos = getTodos();
+
+const MantrasScreen = () => {
+  const [mantras, setMantras] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => setMantras(response.data));
+  });
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -20,7 +33,14 @@ const MantrasScreen = (props) => {
         contentContainerStyle={styles.contentContainer}
       >
         <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}>Mantras go here</Text>
+          {/* mantras.any ? ( */}
+
+          {mantras.map((todo) => {
+            return <Text style={styles.getStartedText}>{todo.title}</Text>;
+          })}
+
+          {/* <Text style={styles.getStartedText}>Add a mantra!</Text>
+          )} */}
         </View>
       </ScrollView>
     </View>
