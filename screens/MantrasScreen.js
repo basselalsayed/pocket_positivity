@@ -9,9 +9,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Card, Title } from 'react-native-paper';
+
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import NewMantra from '../components/NewMantra';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
@@ -28,24 +30,20 @@ const MantrasScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+        style={styles.flatList}
+        // contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.getStartedContainer}>
-          {/* mantras.any ? ( */}
-
+        <NewMantra />
+        <View>
           {mantras.map((mantra) => {
             return (
-              <Text
-                key={mantra.mantra_id}
-                style={styles.getStartedText}
-                children={mantra.mantra}
-              />
+              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
+                <Card.Content>
+                  <Title children={mantra.mantra} />
+                </Card.Content>
+              </Card>
             );
           })}
-
-          {/* <Text style={styles.getStartedText}>Add a mantra!</Text>
-          )} */}
         </View>
       </ScrollView>
     </View>
@@ -56,6 +54,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  card: {
+    marginHorizontal: 20,
+    height: 20,
+    justifyContent: 'center',
+    padding: 5,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -79,9 +83,9 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  mantraContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 0,
   },
   homeScreenFilename: {
     marginVertical: 7,
