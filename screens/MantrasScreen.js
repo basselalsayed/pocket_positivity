@@ -13,10 +13,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
-import getTodos from '../actions/httpRequests';
-
-const todos = getTodos();
-
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
 
