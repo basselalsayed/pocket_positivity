@@ -18,8 +18,11 @@ const MantrasScreen = () => {
 
   useEffect(() => {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => setMantras(response.data));
+      .get('https://help-for-heroes.herokuapp.com/mantras')
+      .then((response) => setMantras(response.data))
+      .catch((error) => {
+        console.error(error);
+      });
   });
 
   return (
@@ -31,8 +34,14 @@ const MantrasScreen = () => {
         <View style={styles.getStartedContainer}>
           {/* mantras.any ? ( */}
 
-          {mantras.map((todo) => {
-            return <Text style={styles.getStartedText}>{todo.title}</Text>;
+          {mantras.map((mantra) => {
+            return (
+              <Text
+                key={mantra.mantra_id}
+                style={styles.getStartedText}
+                children={mantra.mantra}
+              />
+            );
           })}
 
           {/* <Text style={styles.getStartedText}>Add a mantra!</Text>
