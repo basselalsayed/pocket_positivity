@@ -64,9 +64,9 @@ export default class AppContainer extends React.Component {
 
   callMantras = async () => {
     const mantra = await axios
-      .get('https://help-for-heroes.herokuapp.com/mantras/1')
+      .get('https://help-for-heroes.herokuapp.com/mantras')
       .then((response) => {
-        return response.data.mantra;
+        return response.data;
       });
 
     this.setState({ mantra: mantra });
@@ -78,15 +78,24 @@ export default class AppContainer extends React.Component {
     this.setState({ notification: notification });
   };
 
+  filterMantra = (array) => {
+    let rand = Math.random();
+    let arrayLength = array.length;
+    let randIndex = Math.floor(rand * arrayLength);
+    let randomMantra = array[randIndex].mantra;
+    return randomMantra;
+  };
+
   // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.io/dashboard/notifications
   sendPushNotification = async () => {
+    // const realMantra = this.filterMantra(this.state.mantra);
     const message = {
       owner: 'me',
       slug: 'this is the slugg',
       to: this.state.expoPushToken,
       sound: 'default',
       title: 'Mantra Reminder',
-      body: this.state.mantra,
+      body: this.filterMantra(this.state.mantra),
       data: { data: 'goes here' },
       _displayInForeground: true,
     };
