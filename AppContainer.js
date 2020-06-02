@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, Button, Vibration, Platform } from 'react-native';
-import { Notifications, Device } from 'expo';
+import { Notifications, Device, registerRootComponent } from 'expo';
 import * as Permissions from 'expo-permissions';
+import App from './App';
 import Constants from 'expo-constants';
 
 export default class AppContainer extends React.Component {
@@ -11,7 +12,10 @@ export default class AppContainer extends React.Component {
   };
 
   registerForPushNotificationsAsync = async () => {
-    if (Device.brand && Constants.isDevice) {
+    if (
+      (Platform.OS === 'android' || Platform.OS === 'ios') &&
+      Constants.isDevice
+    ) {
       const { status: existingStatus } = await Permissions.getAsync(
         Permissions.NOTIFICATIONS
       );
@@ -30,7 +34,7 @@ export default class AppContainer extends React.Component {
       console.log(token, 'this is the token');
       this.setState({ expoPushToken: token });
     } else {
-      alert('Must use physical device for Push Notifications');
+      alert('Must use physical iOS or Android device');
     }
 
     if (Platform.OS === 'android') {
@@ -86,23 +90,8 @@ export default class AppContainer extends React.Component {
   };
 
   render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'space-around',
-        }}
-      >
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Origin: {this.state.notification.origin}</Text>
-          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
-        </View>
-        <Button
-          title={'Press to Send Notification'}
-          onPress={() => this.sendPushNotification()}
-        />
-      </View>
-    );
+    return <App />;
   }
 }
+
+registerRootComponent(AppContainer);
