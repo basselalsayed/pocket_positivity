@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { LineChart } from "react-native-chart-kit";
-import { Text, View, Dimensions } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { LineChart } from 'react-native-chart-kit';
+import { Text, View, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import axios from 'axios';
 
 const MoodChart = () => {
   const [data, setData] = useState([]);
   const [labels, setLabels] = useState([]);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
+  const [everything, setEverything] = useState('');
 
   useEffect(() => {
     axios
-      .get("https://help-for-heroes.herokuapp.com/scores/1")
+      .get('https://help-for-heroes.herokuapp.com/scores/1')
       .then((response) => getScores(response.data))
       .catch((error) => {
         console.error(error);
@@ -21,12 +22,15 @@ const MoodChart = () => {
   const getScores = (response) => {
     let dataArray = [];
     let labelsArray = [];
+    let everythingArray = [];
     response.forEach((element) => {
       dataArray.push(element.score);
       labelsArray.push(element.date.slice(0, 10));
+      everythingArray.push(element);
     });
     setData(dataArray);
     setLabels(labelsArray);
+    setEverything(everythingArray);
   };
 
   const renderChart = () => {
@@ -49,14 +53,14 @@ const MoodChart = () => {
                 ],
                 legend: [],
               }}
-              width={Dimensions.get("window").width}
+              width={Dimensions.get('window').width}
               height={350}
               fromZero={true}
-              yAxisLabel={""}
+              yAxisLabel={''}
               verticalLabelRotation={35}
               yAxisInterval={1}
               chartConfig={{
-                backgroundColor: "#ADD8E6",
+                backgroundColor: '#ADD8E6',
                 decimalPlaces: 0,
                 color: (opacity = 0.1) => `rgba(89,89,89, ${opacity})`,
                 labelColor: (opacity = 0.1) => `rgba(0, 0, 0, ${opacity})`,
@@ -64,9 +68,9 @@ const MoodChart = () => {
                   borderRadius: 16,
                 },
                 propsForDots: {
-                  r: "6",
-                  strokeWidth: "2",
-                  stroke: "#ADD8E6",
+                  r: '6',
+                  strokeWidth: '2',
+                  stroke: '#ADD8E6',
                 },
               }}
               bezier
@@ -75,11 +79,19 @@ const MoodChart = () => {
                 borderRadius: 16,
               }}
               onDataPointClick={(value) => {
-                setValue(value.value);
+                setValue(value);
               }}
             />
           </ScrollView>
-          <Text>{value}</Text>
+          <Text>
+            {value.value}
+
+            {everything[0].forEach((element) => {
+              if (value.index + 1 === everything.score_id) {
+                console.log(element.comment);
+              }
+            })}
+          </Text>
         </View>
       );
     }
