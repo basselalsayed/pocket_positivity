@@ -3,59 +3,66 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
-import NewMantra from '../components/Forms/NewMantra';
+import MyComponent from '../components/Forms/NewMantra';
+
 import ChatBot from 'react-native-chatbot-expo';
 
 export default function LinksScreen() {
   const steps = [
     {
-      id: 'Greet',
-      message: 'Hello 🤖',
-      trigger: 'Ask Name',
-    },
-    {
-      id: 'Ask Name',
-      message: 'Please type your name?',
-      trigger: 'Waiting user input for name',
-    },
-    {
-      id: 'Waiting user input for name',
-      user: true,
+      id: 'welcome',
+      message: "Hello, how's it going today?",
       trigger: 'checkin',
     },
     {
       id: 'checkin',
-      message: `Hi {previousValue}, How are you feeling today?`,
-      trigger: 'response',
+      component: <MyComponent />,
+      trigger: 'Waiting user input for name',
     },
+
     {
-      id: 'response',
-      options: [
-        { value: 1, label: '1', trigger: '' },
-        { value: 2, label: '2', trigger: '' },
-        { value: 3, label: '3', trigger: '' },
-        { value: 4, label: '4', trigger: '' },
-        { value: 5, label: '5', trigger: '' },
-        { value: 6, label: '6', trigger: '' },
-        { value: 7, label: '7', trigger: '' },
-        { value: 8, label: '8', trigger: '' },
-        { value: 9, label: '9', trigger: '' },
-        { value: 10, label: '10', trigger: '' },
-      ],
-    },
-    {
-      id: 'addmantra',
-      message: `Would you like to save a new mantra?`,
-      options: [
-        { value: 'Yes', label: 'Yes', component: <NewMantra /> },
-        { value: 'No', label: 'No', trigger: 'Done' },
-      ],
-    },
-    {
-      id: 'Done',
-      message: 'Have a great day!',
+      id: 'Waiting user input for name',
+      message: 'bye',
       end: true,
     },
+    // {
+    //   id: 'checkin',
+    //   message: `Hi {previousValue}, How are you feeling today?`,
+    //   trigger: 'response',
+    // },
+    // {
+    //   id: 'response',
+    //   options: [
+    //     { value: 1, label: '1', trigger: '' },
+    //     { value: 2, label: '2', trigger: 'addmantra?' },
+    //     { value: 3, label: '3', trigger: '' },
+    //     { value: 4, label: '4', trigger: '' },
+    //     { value: 5, label: '5', trigger: '' },
+    //     { value: 6, label: '6', trigger: '' },
+    //     { value: 7, label: '7', trigger: '' },
+    //     { value: 8, label: '8', trigger: '' },
+    //     { value: 9, label: '9', trigger: '' },
+    //     { value: 10, label: '10', trigger: '' },
+    //   ],
+    // },
+    // {
+    //   id: 'addmantra?',
+    //   message: `Would you like to save a new mantra?`,
+    //   options: [
+    //     { value: 'Yes', label: 'Yes', trigger: 'signup' },
+    //     { value: 'No', label: 'No', trigger: 'Done' },
+    //   ],
+    // },
+    // {
+    //   id: 'signup',
+    //   component: <Text style={styles.optionText}>Hi there</Text>,
+    //   trigger: 'Done',
+    // },
+    // {
+    //   id: 'Done',
+    //   message: 'Have a great day!',
+    //   end: true,
+    // },
   ];
 
   return (

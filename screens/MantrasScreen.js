@@ -36,8 +36,8 @@ const MantrasScreen = () => {
 
   const postMantra = () => {
     axios
-      .post('https://help-for-heroes.herokuapp.com/mantras/4', {
-        user_id_fk: '4',
+      .post('https://help-for-heroes.herokuapp.com/mantras/', {
+        user_id_fk: '',
         mantra: formInput,
       })
       .catch((error) => {

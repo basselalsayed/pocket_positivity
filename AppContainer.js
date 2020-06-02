@@ -19,6 +19,7 @@ export default class AppContainer extends React.Component {
   state = {
     expoPushToken: '',
     notification: {},
+    currentUser: {},
   };
 
   registerForPushNotificationsAsync = async () => {
