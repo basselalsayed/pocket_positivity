@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { LineChart } from 'react-native-chart-kit';
 import { Text, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -34,17 +34,21 @@ const MoodChart = () => {
   };
 
   const showComment = () => {
-    for (let i = 0; i < everything.length; i++) {
-      if (everything[i].score_id === value.index + 1) {
-        return everything[i].comment;
+    if (value.value) {
+      for (let i = 0; i < everything.length; i++) {
+        if (everything[i].score_id === value.index + 1) {
+          return everything[i].comment;
+        }
       }
     }
   };
 
   const showDate = () => {
-    for (let i = 0; i < everything.length; i++) {
-      if (everything[i].score_id === value.index + 1) {
-        return everything[i].date.slice(0, 10);
+    if (value.value) {
+      for (let i = 0; i < everything.length; i++) {
+        if (everything[i].score_id === value.index + 1) {
+          return everything[i].date.slice(0, 10);
+        }
       }
     }
   };
@@ -100,7 +104,7 @@ const MoodChart = () => {
             />
           </ScrollView>
           <Text>
-            {showDate()}, Mood Rating: {value.value}, Comment: {showComment()}
+            {showDate()} {value.value} {showComment()}
           </Text>
         </View>
       );
