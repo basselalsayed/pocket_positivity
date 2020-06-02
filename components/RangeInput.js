@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
     instructions: {
       textAlign: 'center',
-      color: 'powderpink',  
+      // color: 'powderpink',  
     },
 
     comment: {
