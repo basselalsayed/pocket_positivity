@@ -4,16 +4,14 @@ import axios from 'axios';
 
 import { Button, Card, TextInput } from 'react-native-paper';
 
-const SignUp = () => {
+const Login = () => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const apiPost = () => {
     axios
       .post('https://help-for-heroes.herokuapp.com/users', {
         username: username,
-        email: email,
         password: password,
       })
       .then((response) => {
@@ -26,6 +24,12 @@ const SignUp = () => {
       });
   };
 
+  // axios.get('/user', {
+  //   params: {
+  //     ID: 12345
+  //   }
+  // })
+
   const wipeForm = () => {
     setUsername('');
     setEmail('');
@@ -33,13 +37,8 @@ const SignUp = () => {
   };
 
   const handleSubmit = () => {
-    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(email) === true) {
-      apiPost();
-      wipeForm();
-    } else {
-      alert('Please enter a valid email address');
-    }
+    // apiPost();
+    wipeForm();
   };
 
   return (
@@ -50,13 +49,6 @@ const SignUp = () => {
         autoFocus={true}
         autoCompleteType="username"
         onChangeText={(input) => setUsername(input)}
-      />
-      <TextInput
-        label="Email Address"
-        value={email}
-        textCompleteType="email"
-        autoCompleteType="email"
-        onChangeText={(input) => setEmail(input)}
       />
       <TextInput
         label="Password"
@@ -70,4 +62,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

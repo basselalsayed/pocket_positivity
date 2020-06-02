@@ -9,11 +9,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Card, Title } from 'react-native-paper';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-import NewMantra from '../components/NewMantra';
+import NewMantra from '../components/Forms/NewMantra';
+import Mantras from '../components/Mantras';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
@@ -27,24 +27,19 @@ const MantrasScreen = () => {
       });
   });
 
+  const handleSubmit = (mantra) => {
+    const updatedMantras = [...mantras, mantra];
+    setMantras(updatedMantras);
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.flatList}
         // contentContainerStyle={styles.contentContainer}
       >
-        <NewMantra />
-        <View>
-          {mantras.map((mantra) => {
-            return (
-              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
-                <Card.Content>
-                  <Title children={mantra.mantra} />
-                </Card.Content>
-              </Card>
-            );
-          })}
-        </View>
+        <NewMantra handleSubmit={handleSubmit} />
+        <Mantras mantras={mantras} />
       </ScrollView>
     </View>
   );

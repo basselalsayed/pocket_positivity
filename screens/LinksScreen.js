@@ -3,47 +3,69 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import NewMantra from '../components/Forms/NewMantra';
 import ChatBot from 'react-native-chatbot';
 
 export default function LinksScreen() {
   const steps = [
     {
-      id: '0',
-      message: 'Welcome to react chatbot!',
-      trigger: '1',
+      id: 'Greet',
+      message: 'Hello 🤖',
+      trigger: 'Ask Name',
     },
     {
-      id: '1',
-      message: 'Bye!',
+      id: 'Ask Name',
+      message: 'Please type your name?',
+      trigger: 'Waiting user input for name',
+    },
+    {
+      id: 'Waiting user input for name',
+      user: true,
+      trigger: 'checkin',
+    },
+    {
+      id: 'checkin',
+      message: `Hi {previousValue}, How are you feeling today?`,
+      trigger: 'response',
+    },
+    {
+      id: 'response',
+      options: [
+        { value: 1, label: '1', trigger: '' },
+        { value: 2, label: '2', trigger: '' },
+        { value: 3, label: '3', trigger: '' },
+        { value: 4, label: '4', trigger: '' },
+        { value: 5, label: '5', trigger: '' },
+        { value: 6, label: '6', trigger: '' },
+        { value: 7, label: '7', trigger: '' },
+        { value: 8, label: '8', trigger: '' },
+        { value: 9, label: '9', trigger: '' },
+        { value: 10, label: '10', trigger: '' },
+      ],
+    },
+    {
+      id: 'addmantra',
+      message: `Would you like to save a new mantra?`,
+      options: [
+        { value: 'Yes', label: 'Yes', component: <NewMantra /> },
+        { value: 'No', label: 'No', trigger: 'Done' },
+      ],
+    },
+    {
+      id: 'Done',
+      message: 'Have a great day!',
       end: true,
     },
   ];
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <ChatBot steps={steps} />
-
-      {/* <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
-
-
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      /> */}
+      <View style={styles.contentContainer}>
+        <ChatBot steps={steps} />
+      </View>
     </ScrollView>
   );
 }
@@ -69,7 +91,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fafafa',
   },
   contentContainer: {
-    paddingTop: 15,
+    height: '100%',
   },
   optionIconContainer: {
     marginRight: 12,
