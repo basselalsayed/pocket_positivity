@@ -7,33 +7,52 @@ import React, {useState} from 'react';
 
 
 const SliderInput = () => {
-  const [mood, setMood] = useState([])
+  const [mood, setMood] = useState([5])
   const [shownValue, setShownValue] = useState([]) 
-  const [moodComment, setMoodComment] = useState('')
+  const [moodComment, setMoodComment] = useState('No Comment')
+  const [buttonColour, setButtonColour] = useState('#2b396b')
 
 
   return (
     <View style={styles.container}>
+    <Text style={{fontSize:20, color: '#2b396b', marginBottom: 5}}>
+        Welcome Back! 
+    </Text>
+    <Text style={{fontSize:20, color: '#2b396b', marginBottom: 30}}>
+        Please Let Us Know
+    </Text>
     <Slider
-      style={{ width: 200, height: 40 }}
-      value={5}
+      margin={20}
+      style={{ width: 250, height: 40 }}
+      value={5.5}
+      handleColor={'#2b396b'}
+      // handleDiameter={100}
       minimumValue={1}
       maximumValue={10}
       step={1}
-      minimumTrackTintColor="#FFFFFF"
-      maximumTrackTintColor="#000000"
+      minimumTrackTintColor="#fa5534"
+      maximumTrackTintColor="#20bd3f"
       onSlidingComplete={(value) => {setMood(value)}}
       onValueChange={(shownValue) => {setShownValue(shownValue)}}
+      
     />
     {/* <Text>{shownValue}</Text> */}
-    <Text>{mood}</Text>
-    <TextInput style={styles.comment}
+    <Text style={styles.moodNumber}>{mood}</Text>
+
+    <TextInput style={styles.comment} multiline={true} fontSize={20} placeholder='Please enter any reasons or comments'
       onChangeText={(moodComment) => {setMoodComment(moodComment)}}
     />
-    <Button 
+
+    <Button style={styles.button}
       onPress={ () => console.log(mood, moodComment)}
-      title='Log mood'    
+      padding={20}
+      title='Log mood' 
+      color={buttonColour}
+      onPress={ (buttonColour) => {setButtonColour('#780e80')}}   
     />
+    <Text style={{fontSize:20, color: '#2b396b', marginTop: 30}}>
+        Thank You
+    </Text>
     </View>
   ); 
 };
@@ -49,7 +68,7 @@ const styles = StyleSheet.create({
 
     title: {
       width: '100%',
-      fontSize: 20,
+      fontSize: 30,
       textAlign: 'center',
     },
 
@@ -63,11 +82,19 @@ const styles = StyleSheet.create({
     },
 
     comment: {
+      // margin: 20,
+      textAlign: 'center',
       borderRadius: 20,
-      width: 300,
-      height: 100,
+      width: 250,
+      height: 200,
       borderColor: 'grey',
       borderWidth: 1,
+    },
+    moodNumber: {
+      margin: 10,
+    },
+    button: {
+      padding: 20
     }
 });
 
