@@ -1,6 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Button, Card, Title, TextInput } from 'react-native-paper';
+
 import {
   Image,
   Platform,
@@ -17,19 +19,37 @@ import Mantras from '../components/Mantras';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
+  const [formInput, setFormInput] = useState('');
 
-  useEffect(() => {
+  const getMantras = () => {
     axios
       .get('https://help-for-heroes.herokuapp.com/mantras')
       .then((response) => setMantras(response.data))
       .catch((error) => {
         console.error(error);
       });
-  });
+  };
 
-  const handleSubmit = (mantra) => {
-    const updatedMantras = [...mantras, mantra];
-    setMantras(updatedMantras);
+  useEffect(() => {
+    getMantras();
+  }, []);
+
+  const postMantra = () => {
+    axios
+      .post('https://help-for-heroes.herokuapp.com/mantras/4', {
+        user_id_fk: '4',
+        mantra: formInput,
+      })
+      .catch((error) => {
+        alert('Please try again later');
+        console.error(error);
+      })
+      .then((response) => setMantras(response.data));
+  };
+
+  const handleSubmit = () => {
+    postMantra();
+    getMantras();
   };
 
   return (
@@ -38,8 +58,25 @@ const MantrasScreen = () => {
         style={styles.flatList}
         // contentContainerStyle={styles.contentContainer}
       >
-        <NewMantra handleSubmit={handleSubmit} />
-        <Mantras mantras={mantras} />
+        <View>
+          <TextInput
+            label="Enter a new Mantra..."
+            value={formInput}
+            onChangeText={(formInput) => setFormInput(formInput)}
+          />
+          <Button onPress={handleSubmit}>Submit</Button>
+        </View>
+        <View>
+          {mantras.map((mantra) => {
+            return (
+              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
+                <Card.Content>
+                  <Title children={mantra.mantra} />
+                </Card.Content>
+              </Card>
+            );
+          })}
+        </View>
       </ScrollView>
     </View>
   );

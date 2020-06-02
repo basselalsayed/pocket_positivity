@@ -10,24 +10,12 @@ import {
   View,
 } from 'react-native';
 
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 // import * as AppAuth from 'expo-app-auth';
 
 const Stack = createStackNavigator();
-
-const theme = {
-  ...DefaultTheme,
-  roundness: 2,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: '#3498db',
-    accent: '#f1c40f',
-  },
-};
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
@@ -47,16 +35,14 @@ export default function App(props) {
     return null;
   } else {
     return (
-      <PaperProvider theme={theme}>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-          <NavigationContainer linking={LinkingConfiguration}>
-            <Stack.Navigator>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      </PaperProvider>
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+        <NavigationContainer linking={LinkingConfiguration}>
+          <Stack.Navigator>
+            <Stack.Screen name="Root" component={BottomTabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
       // <View style={styles.container}>
       //   <Text>Expo AppAuth Example</Text>
       //   <Button

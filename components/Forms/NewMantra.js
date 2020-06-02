@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import { View } from 'react-native';
 
-import { TextInput, Button } from 'react-native-paper';
+// import { TextInput, Button } from 'react-native-paper';
 
-const NewMantra = (props) => {
-  const { handleSubmit } = props;
-  const [input, setInput] = useState('');
+// const NewMantra = (props) => {
+//   // const { handleSubmit } = props;
+//   const [input, setInput] = useState('');
 
-  return (
-    <View>
-      <TextInput
-        label="Enter a new Mantra..."
-        value={input}
-        onChangeText={(input) => setInput(input)}
-      />
-      <Button onPress={handleSubmit(input)}>Submit</Button>
-    </View>
-  );
-};
+//   return (
 
-export default NewMantra;
+//   );
+// };
+
+// export default NewMantra;
