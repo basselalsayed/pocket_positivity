@@ -11,7 +11,7 @@ const SliderInput = () => {
 
 
   return (
-    <View >
+    <View style={styles.container}>
     <Slider
       style={{ width: 200, height: 40 }}
       value={5}
@@ -29,7 +29,13 @@ const SliderInput = () => {
 
     </Button>
     </View>
-  );
+  ); 
 };
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
 
 export default SliderInput;
