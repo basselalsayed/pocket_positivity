@@ -34,15 +34,18 @@ const MoodChart = () => {
   };
 
   const showComment = () => {
-    console.log('everything', everything);
-    if (value.index) {
-      for (let i = 0; i < everything.length; i++) {
-        if (everything[i].score_id + 1 === value.index) {
-          return everything[i].comment;
-        }
+    for (let i = 0; i < everything.length; i++) {
+      if (everything[i].score_id === value.index + 1) {
+        return everything[i].comment;
       }
-      console.log('everything', everything[0].score_id);
-      console.log('value', value.index + 1);
+    }
+  };
+
+  const showDate = () => {
+    for (let i = 0; i < everything.length; i++) {
+      if (everything[i].score_id === value.index + 1) {
+        return everything[i].date.slice(0, 10);
+      }
     }
   };
 
@@ -93,14 +96,11 @@ const MoodChart = () => {
               }}
               onDataPointClick={(value) => {
                 setValue(value);
-                console.log('valueeeeeeeee', value);
               }}
             />
           </ScrollView>
           <Text>
-            {value.date}
-            {value.value}
-            {showComment()}
+            {showDate()}, Mood Rating: {value.value}, Comment: {showComment()}
           </Text>
         </View>
       );
