@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import CircleSlider from './CircleSlider';
-// import { CircleSlider } from 'react-circle-slider';
+import CircularSlider from 'react-native-circular-slider';
 
 const CheckInForm = () => {
   const [userScrore, setUserScore] = useState('');
@@ -9,7 +8,7 @@ const CheckInForm = () => {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <CircleSlider
+      <CircularSlider
         value={userScore}
         strokeWidth={1}
         min={90}
