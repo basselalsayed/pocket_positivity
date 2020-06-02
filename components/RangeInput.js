@@ -32,8 +32,6 @@ const SliderInput = () => {
   ); 
 };
 
-
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
 
     scrollView: {
       backgroundColor: 'red',
-    }
+    },
 
     instructions: {
       textAlign: 'center',
