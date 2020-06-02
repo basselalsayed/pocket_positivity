@@ -9,35 +9,37 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import NewMantra from '../components/Forms/NewMantra';
+import Mantras from '../components/Mantras';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
 
   useEffect(() => {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => setMantras(response.data));
+      .get('https://help-for-heroes.herokuapp.com/mantras')
+      .then((response) => setMantras(response.data))
+      .catch((error) => {
+        console.error(error);
+      });
   });
+
+  const handleSubmit = (mantra) => {
+    const updatedMantras = [...mantras, mantra];
+    setMantras(updatedMantras);
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+        style={styles.flatList}
+        // contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.getStartedContainer}>
-          {/* mantras.any ? ( */}
-
-          {mantras.map((todo) => {
-            return <Text style={styles.getStartedText}>{todo.title}</Text>;
-          })}
-
-          {/* <Text style={styles.getStartedText}>Add a mantra!</Text>
-          )} */}
-        </View>
+        <NewMantra handleSubmit={handleSubmit} />
+        <Mantras mantras={mantras} />
       </ScrollView>
     </View>
   );
@@ -47,6 +49,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  card: {
+    marginHorizontal: 20,
+    height: 20,
+    justifyContent: 'center',
+    padding: 5,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -70,9 +78,9 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  mantraContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 0,
   },
   homeScreenFilename: {
     marginVertical: 7,
