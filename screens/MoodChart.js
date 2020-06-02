@@ -55,7 +55,18 @@ const MoodChart = () => {
 
   const renderChart = () => {
     if (data.length === 0) {
-      return <Text>Loading ...</Text>;
+      return (
+        <Text
+          style={{
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            fontSize: 18,
+          }}
+        >
+          Loading...
+        </Text>
+      );
     } else {
       return (
         <View>
@@ -115,9 +126,9 @@ const MoodChart = () => {
               }}
             />
           </ScrollView>
-          <Text>
-            {showDate()} {value.value} {showComment()}
-          </Text>
+          <Text>{showDate()}</Text>
+          <Text>{value.value}</Text>
+          <Text>{showComment()}</Text>
         </View>
       );
     }
