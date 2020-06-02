@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LinksScreen from '../screens/LinksScreen';
 import MantrasScreen from '../screens/MantrasScreen';
+import MoodChart from '../screens/MoodChart';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -48,6 +49,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Charts"
+        component={MoodChart}
+        options={{
+          title: 'Charts',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-book" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -62,5 +73,7 @@ function getHeaderTitle(route) {
       return 'Links to learn more';
     case 'Mantras':
       return 'Review your affirmations';
+    case 'Charts':
+      return 'Review your mood';
   }
 }
