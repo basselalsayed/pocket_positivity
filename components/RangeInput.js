@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
     },
 
     comment: {
-      width: 80,
-      height: 40,
+      borderRadius: 20,
+      width: 300,
+      height: 100,
       borderColor: 'grey',
       borderWidth: 1,
     }
