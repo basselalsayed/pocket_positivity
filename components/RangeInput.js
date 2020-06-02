@@ -26,9 +26,10 @@ const SliderInput = () => {
     />
     {/* <Text>{shownValue}</Text> */}
     <Text>{mood}</Text>
-    <Button onClick>
-
-    </Button>
+    <Button 
+      onPress={ () => console.log(mood)}
+      title='Log mood'    
+    />
     </View>
   ); 
 };
