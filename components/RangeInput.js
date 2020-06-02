@@ -28,8 +28,7 @@ const SliderInput = () => {
     {/* <Text>{shownValue}</Text> */}
     <Text>{mood}</Text>
     <TextInput style={styles.comment}
-      onValueChange={(text) => {setMoodComment(text)}}
-      text={moodComment}
+      onChangeText={(moodComment) => {setMoodComment(moodComment)}}
     />
     <Button 
       onPress={ () => console.log(mood, moodComment)}
