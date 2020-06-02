@@ -38,6 +38,7 @@ const MoodChart = () => {
           <ScrollView>
             <Text>1 Week Mood Example</Text>
             <LineChart
+              key={1}
               data={{
                 labels: labels,
                 datasets: [
