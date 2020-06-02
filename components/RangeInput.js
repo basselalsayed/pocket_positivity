@@ -19,7 +19,7 @@ const SliderInput = () => {
         Welcome Back! 
     </Text>
     <Text style={{fontSize:20, color: '#2b396b', marginBottom: 30}}>
-        Please Let Us Know
+        How are you feeling?
     </Text>
     <Slider
       margin={20}
