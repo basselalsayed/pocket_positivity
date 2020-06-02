@@ -1,14 +1,15 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as React from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as React from "react";
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import MantrasScreen from '../screens/MantrasScreen';
 import NotificationsTest from '../screens/NotificationsTest';
+import MoodChart from "../screens/MoodChart";
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = "Home";
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -23,6 +24,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Get Started',
+
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-code-working" />
           ),
@@ -32,7 +34,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Links"
         component={LinksScreen}
         options={{
-          title: 'Resources',
+
+          title: "Resources",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
@@ -58,6 +61,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Mood Charts"
+        component={MoodChart}
+        options={{
+          title: "Mood Charts",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-book" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -72,5 +85,7 @@ function getHeaderTitle(route) {
       return 'Links to learn more';
     case 'Mantras':
       return 'Review your affirmations';
+    case "Charts":
+      return "Review your mood";
   }
 }
