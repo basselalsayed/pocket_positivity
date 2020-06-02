@@ -4,7 +4,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import NewMantra from '../components/Forms/NewMantra';
-import ChatBot from 'react-native-chatbot';
+import ChatBot from 'react-native-chatbot-expo';
 
 export default function LinksScreen() {
   const steps = [
