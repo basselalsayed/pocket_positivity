@@ -1,5 +1,5 @@
 import Slider from '@react-native-community/slider';
-import {Text, View, StyleSheet, Button} from 'react-native'
+import {Text, View, StyleSheet, Button, TextInput} from 'react-native'
 
 import React, {useState} from 'react';
 
@@ -9,6 +9,7 @@ import React, {useState} from 'react';
 const SliderInput = () => {
   const [mood, setMood] = useState([])
   const [shownValue, setShownValue] = useState([]) 
+  const [moodComment, setMoodComment] = useState('')
 
 
   return (
@@ -26,8 +27,12 @@ const SliderInput = () => {
     />
     {/* <Text>{shownValue}</Text> */}
     <Text>{mood}</Text>
+    <TextInput style={styles.comment}
+      onValueChange={(text) => {setMoodComment(text)}}
+      text={moodComment}
+    />
     <Button 
-      onPress={ () => console.log(mood)}
+      onPress={ () => console.log(mood, moodComment)}
       title='Log mood'    
     />
     </View>
@@ -56,6 +61,13 @@ const styles = StyleSheet.create({
     instructions: {
       textAlign: 'center',
       color: 'powderpink',  
+    },
+
+    comment: {
+      width: 80,
+      height: 40,
+      borderColor: 'grey',
+      borderWidth: 1,
     }
 });
 
