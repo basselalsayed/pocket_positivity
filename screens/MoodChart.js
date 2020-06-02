@@ -1,30 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart } from 'react-native-chart-kit';
 import { Text, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import {
-  Svg,
-  Circle,
-  Polygon,
-  Polyline,
-  Path,
-  Rect,
-  G,
-} from 'react-native-svg';
+import axios from 'axios';
 
 const MoodChart = () => {
-  // const height = 220;
-  // const ;
-  // const chartConfig = {
-  //   backgroundGradientFrom: '#1E2923',
-  //   backgroundGradientFromOpacity: 0,
-  //   backgroundGradientTo: '#08130D',
-  //   backgroundGradientToOpacity: 0.5,
-  //   color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-  //   strokeWidth: 2, // optional, default 3
-  //   barPercentage: 0.5,
-  //   useShadowColorFromDataset: false, // optional
-  // };
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('https://help-for-heroes.herokuapp.com/scores/1')
+      .then((response) => setData(response.data))
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 
   return (
     <View>
