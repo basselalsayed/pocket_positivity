@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": "Mental health logger and reminder to aid you maintain improved wellbeing over time. Built in React Native",
+    "githubUrl": "https://github.com/basselalsayed/pocket_positivity"
   }
 }
