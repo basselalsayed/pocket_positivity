@@ -3,15 +3,34 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import ChatBot from 'react-native-chatbot';
 
 export default function LinksScreen() {
+  const steps = [
+    {
+      id: '0',
+      message: 'Welcome to react chatbot!',
+      trigger: '1',
+    },
+    {
+      id: '1',
+      message: 'Bye!',
+      end: true,
+    },
+  ];
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    >
+      <ChatBot steps={steps} />
+
+      {/* <OptionButton
         icon="md-school"
         label="Read the Expo documentation"
         onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
       />
+
 
       <OptionButton
         icon="md-compass"
@@ -24,25 +43,25 @@ export default function LinksScreen() {
         label="Ask a question on the forums"
         onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
         isLastOption
-      />
+      /> */}
     </ScrollView>
   );
 }
 
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
-      </View>
-    </RectButton>
-  );
-}
+// function OptionButton({ icon, label, onPress, isLastOption }) {
+//   return (
+//     <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
+//       <View style={{ flexDirection: 'row' }}>
+//         <View style={styles.optionIconContainer}>
+//           <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+//         </View>
+//         <View style={styles.optionTextContainer}>
+//           <Text style={styles.optionText}>{label}</Text>
+//         </View>
+//       </View>
+//     </RectButton>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {

@@ -12,6 +12,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
+import SignUp from '../components/Forms/SignUp';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -19,6 +21,7 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
+        <SignUp />
         <View style={styles.welcomeContainer}>
           <Image
             source={
