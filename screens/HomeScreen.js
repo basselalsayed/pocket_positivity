@@ -5,6 +5,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
+import Slider from '@react-native-community/slider';
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
@@ -39,6 +41,13 @@ export default function HomeScreen() {
             <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
           </TouchableOpacity>
         </View>
+        <Slider
+          style={{width: 200, height: 40}}
+          minimumValue={0}
+          maximumValue={1}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#000000"
+        />
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
