@@ -33,6 +33,19 @@ const MoodChart = () => {
     setEverything(everythingArray);
   };
 
+  const showComment = () => {
+    console.log('everything', everything);
+    if (value.index) {
+      for (let i = 0; i < everything.length; i++) {
+        if (everything[i].score_id + 1 === value.index) {
+          return everything[i].comment;
+        }
+      }
+      console.log('everything', everything[0].score_id);
+      console.log('value', value.index + 1);
+    }
+  };
+
   const renderChart = () => {
     if (data.length === 0) {
       return <Text>Loading ...</Text>;
@@ -80,17 +93,14 @@ const MoodChart = () => {
               }}
               onDataPointClick={(value) => {
                 setValue(value);
+                console.log('valueeeeeeeee', value);
               }}
             />
           </ScrollView>
           <Text>
+            {value.date}
             {value.value}
-
-            {everything[0].forEach((element) => {
-              if (value.index + 1 === everything.score_id) {
-                console.log(element.comment);
-              }
-            })}
+            {showComment()}
           </Text>
         </View>
       );
