@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LinksScreen from '../screens/LinksScreen';
 import MantrasScreen from '../screens/MantrasScreen';
+import NotificationsTest from '../screens/NotificationsTest';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -43,6 +44,16 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={MantrasScreen}
         options={{
           title: 'Mantras',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-book" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Notifications"
+        component={NotificationsTest}
+        options={{
+          title: 'Notification',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
