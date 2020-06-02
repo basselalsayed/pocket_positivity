@@ -7,6 +7,7 @@ import axios from 'axios';
 const MoodChart = () => {
   const [data, setData] = useState([]);
   const [labels, setLabels] = useState([]);
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     axios
@@ -36,37 +37,36 @@ const MoodChart = () => {
         <View>
           {console.log(data)}
           <ScrollView>
-            <Text>Bezier Line Chart</Text>
+            <Text>1 Week Mood Example</Text>
             <LineChart
               data={{
                 labels: labels,
                 datasets: [
                   {
                     data: data,
-                    strokeWidth: 2, // optional
+                    strokeWidth: 2,
                   },
                 ],
+                legend: [],
               }}
-              width={Dimensions.get('window').width} // from react-native
-              height={220}
-              // yAxisLabel="$"
-              // yAxisSuffix="k"
-              yAxisInterval={1} // optional, defaults to 1
+              width={Dimensions.get('window').width}
+              height={350}
+              fromZero={true}
+              yAxisLabel={''}
+              verticalLabelRotation={35}
+              yAxisInterval={1}
               chartConfig={{
-                backgroundColor: '#0000A0',
-                backgroundGradientFrom: '#fb8c00',
-                backgroundGradientTo: '#ffa726',
-                decimalPlaces: 2, // optional, defaults to 2dp
-                color: (opacity = 0.5) => `rgba(244, 250, 211, ${opacity})`,
-                labelColor: (opacity = 0.5) =>
-                  `rgba(156, 146, 232, ${opacity})`,
+                backgroundColor: '#ADD8E6',
+                decimalPlaces: 0,
+                color: (opacity = 0.1) => `rgba(89,89,89, ${opacity})`,
+                labelColor: (opacity = 0.1) => `rgba(0, 0, 0, ${opacity})`,
                 style: {
                   borderRadius: 16,
                 },
                 propsForDots: {
                   r: '6',
                   strokeWidth: '2',
-                  stroke: '#ffa726',
+                  stroke: '#ADD8E6',
                 },
               }}
               bezier
@@ -74,8 +74,12 @@ const MoodChart = () => {
                 marginVertical: 8,
                 borderRadius: 16,
               }}
+              onDataPointClick={(value) => {
+                setValue(value.value);
+              }}
             />
           </ScrollView>
+          <Text>{value}</Text>
         </View>
       );
     }
