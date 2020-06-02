@@ -32,10 +32,31 @@ const SliderInput = () => {
   ); 
 };
 
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      justifyContent: 'center', 
+      alignItems: 'center',
+      paddingVertical: 20,
       backgroundColor: '#fff',
     },
+
+    title: {
+      width: '100%',
+      fontSize: 20,
+      textAlign: 'center',
+    },
+
+    scrollView: {
+      backgroundColor: 'red',
+    }
+
+    instructions: {
+      textAlign: 'center',
+      color: 'powderpink',  
+    }
+});
 
 export default SliderInput;
