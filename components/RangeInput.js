@@ -44,10 +44,14 @@ const SliderInput = () => {
     />
 
     <Button style={styles.button}
-      // onPress={ () => console.log(mood, moodComment)}
+      
       title='Log mood' 
       color={buttonColour}
-      onPress={ (buttonColour) => {setButtonColour('#780e80')}, () => console.log(mood, moodComment)}   
+      onPress={ (buttonColour) => {
+        console.log(mood, moodComment);
+        setButtonColour('#780e80');
+      }}
+      // onPress={ (buttonColour) => {setButtonColour('#780e80')}}   
     />
     <Text style={{fontSize:20, color: '#2b396b', marginTop: 30}}>
         Thank You
