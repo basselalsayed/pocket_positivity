@@ -1,7 +1,8 @@
 import Slider from '@react-native-community/slider';
-import {Text, View} from 'react-native'
+import {Text, View, StyleSheet, Button} from 'react-native'
 
 import React, {useState} from 'react';
+
 
 
 
@@ -23,7 +24,7 @@ const SliderInput = () => {
       onSlidingComplete={(value) => {setMood(value)}}
       onValueChange={(shownValue) => {setShownValue(shownValue)}}
     />
-    <Text>{shownValue}</Text>
+    {/* <Text>{shownValue}</Text> */}
     <Text>{mood}</Text>
     <Button onClick>
 
