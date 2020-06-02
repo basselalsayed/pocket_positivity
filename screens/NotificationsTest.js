@@ -1,40 +1,15 @@
-// import React from 'react';
-// import { Text, View, Button, Vibration, Platform } from 'react-native';
-// import { Notifications, Device } from 'expo';
-// import * as Permissions from 'expo-permissions';
-// import Constants from 'expo-constants';
-
-// export default function NotificationsTest() {
-//   return (
-//     <View
-//       style={{
-//         flex: 1,
-//         alignItems: 'center',
-//         justifyContent: 'space-around',
-//       }}
-//     >
-//       <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>Origin: {this.props.notification.origin}</Text>
-//         <Text>Data: {JSON.stringify(this.props.notification.data)}</Text>
-//       </View>
-//       <Button
-//         title={'Press to Send Notification'}
-//         onPress={() => this.sendPushNotification()}
-//       />
-//     </View>
-//   );
-// }
-
 import React from 'react';
 import { Text, View, Button, Vibration, Platform } from 'react-native';
 import { Notifications, Device } from 'expo';
 import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
+import axios from 'axios';
 
 export default class AppContainer extends React.Component {
   state = {
     expoPushToken: '',
     notification: {},
+    mantra: '',
   };
 
   registerForPushNotificationsAsync = async () => {
@@ -75,6 +50,7 @@ export default class AppContainer extends React.Component {
 
   componentDidMount() {
     this.registerForPushNotificationsAsync();
+    this.callMantras();
 
     // Handle notifications that are received or selected while the app
     // is open. If the app was closed and then opened by tapping the
@@ -85,6 +61,16 @@ export default class AppContainer extends React.Component {
       this._handleNotification
     );
   }
+
+  callMantras = async () => {
+    const mantra = await axios
+      .get('https://help-for-heroes.herokuapp.com/mantras/1')
+      .then((response) => {
+        return response.data.mantra;
+      });
+
+    this.setState({ mantra: mantra });
+  };
 
   _handleNotification = (notification) => {
     Vibration.vibrate();
@@ -99,8 +85,8 @@ export default class AppContainer extends React.Component {
       slug: 'this is the slugg',
       to: this.state.expoPushToken,
       sound: 'default',
-      title: 'Original Title',
-      body: 'And here is the body!',
+      title: 'Mantra Reminder',
+      body: this.state.mantra,
       data: { data: 'goes here' },
       _displayInForeground: true,
     };
@@ -131,6 +117,10 @@ export default class AppContainer extends React.Component {
         <Button
           title={'Press to Send Notification'}
           onPress={() => this.sendPushNotification()}
+        />
+        <Button
+          title={'console.log the state'}
+          onPress={() => console.log(this.state.mantra, 'state button press')}
         />
       </View>
     );
