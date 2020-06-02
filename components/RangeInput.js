@@ -30,8 +30,8 @@ const SliderInput = () => {
       minimumValue={1}
       maximumValue={10}
       step={1}
-      minimumTrackTintColor="#fa5534"
-      maximumTrackTintColor="#20bd3f"
+      minimumTrackTintColor="#20bd3f"
+      maximumTrackTintColor="#fa5534"
       onSlidingComplete={(value) => {setMood(value)}}
       onValueChange={(shownValue) => {setShownValue(shownValue)}}
       
@@ -39,16 +39,15 @@ const SliderInput = () => {
     {/* <Text>{shownValue}</Text> */}
     <Text style={styles.moodNumber}>{mood}</Text>
 
-    <TextInput style={styles.comment} multiline={true} fontSize={20} placeholder='Please enter any reasons or comments'
+    <TextInput style={styles.comment} multiline={true} fontSize={20} placeholder='Any reasons or comments'
       onChangeText={(moodComment) => {setMoodComment(moodComment)}}
     />
 
     <Button style={styles.button}
-      onPress={ () => console.log(mood, moodComment)}
-      padding={20}
+      // onPress={ () => console.log(mood, moodComment)}
       title='Log mood' 
       color={buttonColour}
-      onPress={ (buttonColour) => {setButtonColour('#780e80')}}   
+      onPress={ (buttonColour) => {setButtonColour('#780e80')}, () => console.log(mood, moodComment)}   
     />
     <Text style={{fontSize:20, color: '#2b396b', marginTop: 30}}>
         Thank You
@@ -94,7 +93,8 @@ const styles = StyleSheet.create({
       margin: 10,
     },
     button: {
-      padding: 20
+      paddingVertical: 20,
+      // padding: 20
     }
 });
 
