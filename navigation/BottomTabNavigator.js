@@ -3,6 +3,7 @@ import * as React from "react";
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import LinksScreen from '../screens/LinksScreen';
 import MantrasScreen from '../screens/MantrasScreen';
 import NotificationsTest from '../screens/NotificationsTest';
@@ -21,7 +22,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={ProfileScreen}
         options={{
           title: 'Get Started',
 
