@@ -60,7 +60,16 @@ const MoodChart = () => {
       return (
         <View>
           <ScrollView>
-            <Text>1 Week Mood Example</Text>
+            <Text
+              style={{
+                fontStyle: 'italic',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                fontSize: 18,
+              }}
+            >
+              Previous Mood Ratings and Comments
+            </Text>
             <LineChart
               key={1}
               data={{
@@ -71,25 +80,28 @@ const MoodChart = () => {
                     strokeWidth: 2,
                   },
                 ],
-                legend: [],
               }}
               width={Dimensions.get('window').width}
-              height={350}
+              height={425}
               fromZero={true}
-              yAxisLabel={''}
-              verticalLabelRotation={35}
+              verticalLabelRotation={70}
               yAxisInterval={1}
               chartConfig={{
-                backgroundColor: '#ADD8E6',
+                backgroundColor: 'rgb(255, 255, 255)',
+                backgroundGradientFrom: 'rgb(255, 255, 255)',
+                backgroundGradientTo: 'rgb(255, 255, 255)',
+                backgroundGradientFromOpacity: 0,
+                fillShadowGradient: 'rgb(255, 255, 255)',
+                fillShadowGradientOpacity: 0,
                 decimalPlaces: 0,
-                color: (opacity = 0.1) => `rgba(89,89,89, ${opacity})`,
+                color: (opacity = 0.1) => `rgba(0,0,0, ${opacity})`,
                 labelColor: (opacity = 0.1) => `rgba(0, 0, 0, ${opacity})`,
                 style: {
                   borderRadius: 16,
                 },
                 propsForDots: {
                   r: '6',
-                  strokeWidth: '2',
+                  strokeWidth: '6',
                   stroke: '#ADD8E6',
                 },
               }}
