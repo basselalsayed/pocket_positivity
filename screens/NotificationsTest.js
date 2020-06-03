@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Button, Vibration, Platform } from 'react-native';
+import { Text, View, Vibration, Platform } from 'react-native';
 import { Notifications, Device } from 'expo';
 import * as Permissions from 'expo-permissions';
+import { Button } from 'react-native-paper';
 import Constants from 'expo-constants';
 import axios from 'axios';
 
@@ -60,10 +61,6 @@ export default class AppContainer extends React.Component {
     this._notificationSubscription = Notifications.addListener(
       this._handleNotification
     );
-    // Notifications.scheduleLocalNotificationAsync(
-    //   { title: 'the title', body: 'this isthe body' },
-    //   { time: new Date().getTime() + 1000, repeat: 'minute' }
-    // );
   }
 
   callMantras = async () => {
@@ -142,21 +139,33 @@ export default class AppContainer extends React.Component {
         }}
       >
         <Button
-          title={'Give me a Random Mantra'}
+          icon="camera"
+          mode="contained"
           onPress={() => this.sendPushNotification()}
-        />
+        >
+          Give me a Random Mantra
+        </Button>
         <Button
-          title={'Send me a Mantra in a hour'}
+          icon="clock-fast"
+          mode="contained"
           onPress={() => this.setNotificationTimerHour()}
-        />
+        >
+          Send Me a Mantra In an Hour
+        </Button>
         <Button
-          title={'Send me a Mantra in a Day'}
-          onPress={() => this.setNotificationTimerHour()}
-        />
+          icon="calendar-clock"
+          mode="contained"
+          onPress={() => this.setNotificationTimerDay()}
+        >
+          Send me a Mantra in a Day
+        </Button>
         <Button
-          title={'Cancel all my notifications'}
+          icon="cancel"
+          mode="contained"
           onPress={() => this.cancelNotificationTimers()}
-        />
+        >
+          Cancel all my notifications
+        </Button>
       </View>
     );
   }
