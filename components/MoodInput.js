@@ -19,14 +19,14 @@ const MoodInput = () => {
     axios
       .post('https://help-for-heroes.herokuapp.com/scores/1', {
         user_id_fk: 1,
-        score: shownValue,
+        score: mood,
         comment: moodComment,
       })
       .catch((error) => {
         alert('Please try again later');
         console.error(error);
       })
-      .then((response) => setMoodInput(response.data));
+      .then((response) => setMood(response.data));
   };
 
   return (
@@ -35,17 +35,15 @@ const MoodInput = () => {
         Welcome Back!
       </Text>
       <Text style={{ fontSize: 20, color: '#2b396b', marginBottom: 30 }}>
-        How are you feeling?
+        How are you Feeling?
       </Text>
       <Slider
         margin={20}
         style={{ width: 250, height: 40 }}
         value={5.5}
         handleColor={'#2b396b'}
-        // handleDiameter={100}
         minimumValue={1}
         maximumValue={10}
-        step={1}
         minimumTrackTintColor="#20bd3f"
         maximumTrackTintColor="#fa5534"
         onValueChange={(shownValue) => {
@@ -53,8 +51,7 @@ const MoodInput = () => {
           setMood(shownValue);
         }}
       />
-      {/* <Text>{shownValue}</Text> */}
-      <Text style={styles.moodNumber}>{mood}</Text>
+      <Text style={styles.moodNumber}>{Math.floor(mood)}</Text>
       <TextInput
         style={styles.comment}
         multiline={true}
@@ -66,13 +63,12 @@ const MoodInput = () => {
       />
       <Button
         style={styles.button}
-        title="Log mood"
+        title="Log Mood"
         color={buttonColour}
         onPress={() => {
           postMoodInput();
           setButtonColour('#780e80');
         }}
-        // onPress={ (buttonColour) => {setButtonColour('#780e80')}}
       />
       <Text style={{ fontSize: 20, color: '#2b396b', marginTop: 30 }}>
         Thank You
