@@ -15,7 +15,6 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 // import * as AppAuth from 'expo-app-auth';
-import MoodInput from './components/MoodInput';
 
 const Stack = createStackNavigator();
 
@@ -40,7 +39,6 @@ export default function App(props) {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
           <NavigationContainer linking={LinkingConfiguration}>
-            <MoodInput />
             <Stack.Navigator>
               <Stack.Screen name="Root" component={BottomTabNavigator} />
             </Stack.Navigator>

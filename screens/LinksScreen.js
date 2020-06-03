@@ -6,7 +6,7 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import MyComponent from '../components/Forms/NewMantra';
 
 import ChatBot from 'react-native-chatbot-expo';
-
+import MoodInput from '../components/MoodInput';
 export default function LinksScreen() {
   const steps = [
     {
@@ -16,7 +16,7 @@ export default function LinksScreen() {
     },
     {
       id: 'checkin',
-      component: <MyComponent />,
+      component: <MoodInput />,
       trigger: 'Waiting user input for name',
     },
 
