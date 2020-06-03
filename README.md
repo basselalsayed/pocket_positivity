@@ -1,6 +1,6 @@
 ## Pocket Positivity
 
-#### A Native app built with React Native and Expo built in a 3 day hack-athon to help Key Workers :).
+#### A Native app built with React Native and Expo built in a 3 day Hackathon to help Key Workers!
 
 As a Team this was an entirely new tech stack which had been rapidly learned and implemented over the last two and a half days. In order to aid the project management we utilised a few techniques:
 
