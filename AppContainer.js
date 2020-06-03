@@ -100,10 +100,14 @@ export default class AppContainer extends React.Component {
     });
   };
 
+  setNotificationTimer = () => {
+    console.log('hi');
+  };
+
   render() {
     return (
       <PaperProvider theme={theme}>
-        <App />
+        <App props={this.setNotificationTimer} />
       </PaperProvider>
     );
   }

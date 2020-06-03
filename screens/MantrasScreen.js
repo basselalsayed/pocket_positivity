@@ -1,6 +1,10 @@
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import TabBarIcon from '../components/TabBarIcon';
+import { Ionicons } from '@expo/vector-icons';
+import TimePicker from '../components/Forms/TimePicker';
 import { Button, Card, Title, TextInput } from 'react-native-paper';
 
 import {
@@ -17,9 +21,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import NewMantra from '../components/Forms/NewMantra';
 import Mantras from '../components/Mantras';
 
-const MantrasScreen = () => {
+const MantrasScreen = (snt) => {
   const [mantras, setMantras] = useState([]);
-  const [formInput, setFormInput] = useState('');
+  const [mantraInput, setMantraInput] = useState('');
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
 
   const getMantras = () => {
     axios
@@ -37,8 +44,8 @@ const MantrasScreen = () => {
   const postMantra = () => {
     axios
       .post('https://help-for-heroes.herokuapp.com/mantras/', {
-        user_id_fk: '',
-        mantra: formInput,
+        user_id_fk: '1',
+        mantra: mantraInput,
       })
       .catch((error) => {
         alert('Please try again later');
@@ -52,6 +59,27 @@ const MantrasScreen = () => {
     getMantras();
   };
 
+  const handleSubmitTime = () => {};
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -61,19 +89,24 @@ const MantrasScreen = () => {
         <View>
           <TextInput
             label="Enter a new Mantra..."
-            value={formInput}
-            onChangeText={(formInput) => setFormInput(formInput)}
+            value={mantraInput}
+            onChangeText={(mantraInput) => setMantraInput(mantraInput)}
           />
           <Button onPress={handleSubmit}>Submit</Button>
         </View>
         <View>
           {mantras.map((mantra) => {
             return (
-              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
-                <Card.Content>
-                  <Title children={mantra.mantra} />
-                </Card.Content>
-              </Card>
+              <Fragment>
+                <Card key={mantra.mantra_id} style={styles.mantraContainer}>
+                  <Card.Content>
+                    <Title children={mantra.mantra} />
+
+                    <TimePicker />
+                    <Button onPress={() => {}} children={'Notify Me'} />
+                  </Card.Content>
+                </Card>
+              </Fragment>
             );
           })}
         </View>

@@ -55,6 +55,7 @@ export default function App(props) {
   } else {
     {
       console.log(auth);
+      console.log(props);
     }
     return showLogin();
     // <View style={styles.container}>
