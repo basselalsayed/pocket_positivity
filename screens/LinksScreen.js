@@ -100,7 +100,7 @@ export default function LinksScreen() {
     {
       id: 'anxious-self-help',
       message:
-        'Corona Virus induced anxiety is common check out this blog on how to cope with anxiety in these trying times',
+        'Corona Virus induced anxiety is common check out this blog on how to cope with anxiety in these trying times-https://www.anxietyuk.org.uk/blog/covid-19-and-anxiety-part2/',
       end: true,
     },
     {

@@ -20,15 +20,15 @@ const MoodInput = (props) => {
   console.log('props', props);
 
   const postMoodInput = () => {
-    axios
-      .post('https://help-for-heroes.herokuapp.com/scores/2', {
-        score: mood,
-        comment: moodComment,
-      })
-      .catch((error) => {
-        alert('Please try again later');
-        console.error(error);
-      });
+    // axios
+    //   .post('https://help-for-heroes.herokuapp.com/scores/2', {
+    //     score: mood,
+    //     comment: moodComment,
+    //   })
+    //   .catch((error) => {
+    //     alert('Please try again later');
+    //     console.error(error);
+    //   });
     let nextStep = mood >= 5 ? 'happy' : 'unhappy';
     triggerNextStep(buttonWasPressed, nextStep);
     console.log('success', 'anxious-someone-to-talk-to');
