@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Button, TextInput} from 'react-native'
 
 import React, {useState} from 'react';
 
-
+import {RadioButton} from 'react-native-paper';
 
 
 const ButtonInput = () => {
@@ -11,6 +11,7 @@ const ButtonInput = () => {
   const [shownValue, setShownValue] = useState([]) 
   const [moodComment, setMoodComment] = useState('No Comment')
   const [buttonColour, setButtonColour] = useState('#2b396b')
+  const [checkedButton, setCheckedButton] = useState([])
 
 
   return (
@@ -22,6 +23,13 @@ const ButtonInput = () => {
         How are you feeling?
     </Text>
     {/* <Text>{shownValue}</Text> */}
+    <RadioButton 
+      value={1}
+      status={checked === 'first' ? 'checked' : 'unchecked'}
+      onPress={() => { setCheckedButton(checkedButton)}}
+    />
+    
+
     <Text style={styles.moodNumber}>{mood}</Text>
 
     <TextInput style={styles.comment} multiline={true} fontSize={20} placeholder='Any reasons or comments'
