@@ -79,7 +79,7 @@ export default class AppContainer extends React.Component {
   setNotificationTimer = () => {
     Notifications.scheduleLocalNotificationAsync(
       { title: 'the title', body: this.filterMantra(this.state.mantra) },
-      { time: new Date().getTime() + 1000 }
+      { time: new Date().getTime() + 1000, repeat: 'minute' }
     );
   };
 
