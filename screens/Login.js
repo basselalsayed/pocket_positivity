@@ -4,8 +4,9 @@ import axios from 'axios';
 
 import { Button, Card, TextInput } from 'react-native-paper';
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const apiPost = () => {
@@ -15,8 +16,8 @@ const Login = () => {
         password: password,
       })
       .then((response) => {
-        console.log(response);
-        alert('Success');
+        // console.log(response);
+        // // alert('Success');
       })
       .catch((error) => {
         console.log(error);
@@ -38,6 +39,7 @@ const Login = () => {
 
   const handleSubmit = () => {
     // apiPost();
+    setAuth(true);
     wipeForm();
   };
 
@@ -49,6 +51,13 @@ const Login = () => {
         autoFocus={true}
         autoCompleteType="username"
         onChangeText={(input) => setUsername(input)}
+      />
+      <TextInput
+        label="Email"
+        value={email}
+        autoFocus={true}
+        autoCompleteType="Email"
+        onChangeText={(input) => setEmail(input)}
       />
       <TextInput
         label="Password"

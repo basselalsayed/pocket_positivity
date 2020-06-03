@@ -9,6 +9,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import Login from './screens/Login';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
@@ -19,6 +20,7 @@ const Stack = createStackNavigator();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
+  const [auth, setAuth] = useState(false);
 
   // let [authState, setAuthState] = useState(null);
 
@@ -31,37 +33,57 @@ export default function App(props) {
   //   })();
   // }, []);
 
+  const showLogin = () => {
+    if (auth === true) {
+      return (
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+          <NavigationContainer linking={LinkingConfiguration}>
+            <Stack.Navigator>
+              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      );
+    } else {
+      return <Login setAuth={setAuth} />;
+    }
+  };
+
   if (!isLoadingComplete) {
     return null;
   } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-      // <View style={styles.container}>
-      //   <Text>Expo AppAuth Example</Text>
-      //   <Button
-      //     title="Sign In with Google "
-      //     onPress={async () => {
-      //       const _authState = await signInAsync();
-      //       setAuthState(_authState);
-      //     }}
-      //   />
-      //   <Button
-      //     title="Sign Out "
-      //     onPress={async () => {
-      //       await signOutAsync(authState);
-      //       setAuthState(null);
-      //     }}
-      //   />
-      //   <Text>{JSON.stringify(authState, null, 2)}</Text>
-      // </View>
-    );
+    {
+      console.log(auth);
+    }
+    return showLogin();
+    // <View style={styles.container}>
+    //   {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+    //   <NavigationContainer linking={LinkingConfiguration}>
+    //     <Stack.Navigator>
+    //       <Stack.Screen name="Root" component={BottomTabNavigator} />
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </View>
+    // <View style={styles.container}>
+    //   <Text>Expo AppAuth Example</Text>
+    //   <Button
+    //     title="Sign In with Google "
+    //     onPress={async () => {
+    //       const _authState = await signInAsync();
+    //       setAuthState(_authState);
+    //     }}
+    //   />
+    //   <Button
+    //     title="Sign Out "
+    //     onPress={async () => {
+    //       await signOutAsync(authState);
+    //       setAuthState(null);
+    //     }}
+    //   />
+    //   <Text>{JSON.stringify(authState, null, 2)}</Text>
+    // </View>
+    // );
   }
 }
 
