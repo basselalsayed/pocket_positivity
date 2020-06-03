@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -12,10 +12,22 @@ import {
 const MoodInput = () => {
   const [mood, setMood] = useState(5);
   const [shownValue, setShownValue] = useState();
-  const [moodComment, setMoodComment] = useState(
-    'What made you feel this way?'
-  );
+  const [moodComment, setMoodComment] = useState('No comment this time');
   const [buttonColour, setButtonColour] = useState('#2b396b');
+
+  const postMoodInput = () => {
+    axios
+      .post('https://help-for-heroes.herokuapp.com/scores/1', {
+        user_id_fk: 1,
+        score: shownValue,
+        comment: moodComment,
+      })
+      .catch((error) => {
+        alert('Please try again later');
+        console.error(error);
+      })
+      .then((response) => setMoodInput(response.data));
+  };
 
   return (
     <View style={styles.container}>
@@ -56,8 +68,8 @@ const MoodInput = () => {
         style={styles.button}
         title="Log mood"
         color={buttonColour}
-        onPress={(buttonColour) => {
-          console.log(mood, moodComment);
+        onPress={() => {
+          postMoodInput();
           setButtonColour('#780e80');
         }}
         // onPress={ (buttonColour) => {setButtonColour('#780e80')}}
@@ -102,8 +114,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   button: {
-    paddingVertical: 20,
-    // padding: 20
+    // paddingVertical: 20,
+    padding: 20,
   },
 });
 
