@@ -1,12 +1,12 @@
 ## Pocket Positivity
 
-#### React navite with expo to launch the app for development.
+#### A Native app built with React Native and Expo built in a 3 day hack-athon to help Key Workers :).
 
-As a Team this was an entirely new tech stack which had been rapidly learned and implamented over the last two and a half days. In order to aid the project mangment we utalised a few tequniches:
+As a Team this was an entirely new tech stack which had been rapidly learned and implemented over the last two and a half days. In order to aid the project management we utilised a few techniques:
 
-- Pair programing
+- Pair programming
 - Mobbing to eleviate blockers
-- Trello board for managing learing resorces, ToDo, Completed etc.
+- Trello board for managing learning resources, ToDo, Completed etc.
 
 #### Team Members
 
@@ -16,22 +16,22 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 
 1. Download Expo on your phone from the app store in order to load the app from the QR code.
 2. Install expo SDK from: https://expo.io/
-3. To run the program please clone the folowing repositories
+3. To run the program please clone the following repositories
 
-- Back-end use the follwing link: https://github.com/davidpaps/help_for_heroes_backend
-- Front-end use the followig link: https://github.com/basselalsayed/pocket_positivity
+- Back-end use the following link: https://github.com/davidpaps/help_for_heroes_backend
+- Front-end use the following link: https://github.com/basselalsayed/pocket_positivity
 
-4. After downloading the both of these into a directory as seperate folders run package controller install dependancies.
+4. After downloading the both of these into a directory as separate folders run package controller install dependancies.
 
 - Front-end
-  Setup packeged: Yarn install
+  Setup packaged: Yarn install
   open Expo: expo start
 - Back-end
-  Setup packeged: Yarn install
+  Setup packaged: Yarn install
 
 ### Features
 
-- Mantras - contnuous positive affermation can be sent to the user or by request
+- Mantras - continuous positive affirmation can be sent to the user or by request
 - Ask user for input stating mood and attaching comment.
-- Past inputs can then be collectvely viewed to recognise trends for positive or negative emotions over time.
-- The user can interact with a chatbot to represent an empathetic interaction with answers and helpful resorces in response to specific awnsers.
+- Past inputs can then be collectively viewed to recognise trends for positive or negative emotions over time.
+- The user can interact with a chatbot to represent an empathetic interaction with answers and helpful resources in response to specific answers.
