@@ -80,12 +80,12 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
+      return 'Chat';
     case 'Links':
-      return 'Links to learn more';
-    case 'Mantras':
-      return 'Review your affirmations';
-    case 'Charts':
-      return 'Review your mood';
+      return 'Mantras';
+    case 'Notifications':
+      return 'Notifications';
+    case 'Mood Charts':
+      return 'Mood Charts';
   }
 }
