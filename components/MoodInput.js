@@ -18,15 +18,13 @@ const MoodInput = () => {
   const postMoodInput = () => {
     axios
       .post('https://help-for-heroes.herokuapp.com/scores/1', {
-        user_id_fk: 1,
         score: mood,
         comment: moodComment,
       })
       .catch((error) => {
         alert('Please try again later');
         console.error(error);
-      })
-      .then((response) => setMood(response.data));
+      });
   };
 
   return (
