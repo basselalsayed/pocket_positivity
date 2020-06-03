@@ -60,6 +60,7 @@ const Login = ({ setAuth }) => {
         onChangeText={(input) => setEmail(input)}
       />
       <TextInput
+        secureTextEntry={true}
         label="Password"
         value={password}
         textContentType="newPassword"
