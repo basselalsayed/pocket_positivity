@@ -1,6 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Button, Card, Title, TextInput } from 'react-native-paper';
+
 import {
   Image,
   Platform,
@@ -9,34 +11,71 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import NewMantra from '../components/Forms/NewMantra';
+import Mantras from '../components/Mantras';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
+  const [formInput, setFormInput] = useState('');
+
+  const getMantras = () => {
+    axios
+      .get('https://help-for-heroes.herokuapp.com/mantras')
+      .then((response) => setMantras(response.data))
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
+    getMantras();
+  }, []);
+
+  const postMantra = () => {
     axios
-      .get('https://jsonplaceholder.typicode.com/posts')
+      .post('https://help-for-heroes.herokuapp.com/mantras/', {
+        user_id_fk: '',
+        mantra: formInput,
+      })
+      .catch((error) => {
+        alert('Please try again later');
+        console.error(error);
+      })
       .then((response) => setMantras(response.data));
-  });
+  };
+
+  const handleSubmit = () => {
+    postMantra();
+    getMantras();
+  };
 
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+        style={styles.flatList}
+        // contentContainerStyle={styles.contentContainer}
       >
-        <View style={styles.getStartedContainer}>
-          {/* mantras.any ? ( */}
-
-          {mantras.map((todo) => {
-            return <Text style={styles.getStartedText}>{todo.title}</Text>;
+        <View>
+          <TextInput
+            label="Enter a new Mantra..."
+            value={formInput}
+            onChangeText={(formInput) => setFormInput(formInput)}
+          />
+          <Button onPress={handleSubmit}>Submit</Button>
+        </View>
+        <View>
+          {mantras.map((mantra) => {
+            return (
+              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
+                <Card.Content>
+                  <Title children={mantra.mantra} />
+                </Card.Content>
+              </Card>
+            );
           })}
-
-          {/* <Text style={styles.getStartedText}>Add a mantra!</Text>
-          )} */}
         </View>
       </ScrollView>
     </View>
@@ -47,6 +86,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  card: {
+    marginHorizontal: 20,
+    height: 20,
+    justifyContent: 'center',
+    padding: 5,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -70,9 +115,9 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
+  mantraContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 0,
   },
   homeScreenFilename: {
     marginVertical: 7,

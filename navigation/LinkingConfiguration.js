@@ -10,5 +10,11 @@ export default {
         Links: 'links',
       },
     },
+    Login: {
+      path: 'login',
+      screens: {
+        Login: 'login',
+      },
+    },
   },
 };

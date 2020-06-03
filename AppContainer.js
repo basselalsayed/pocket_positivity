@@ -4,11 +4,22 @@ import { Notifications, Device, registerRootComponent } from 'expo';
 import * as Permissions from 'expo-permissions';
 import App from './App';
 import Constants from 'expo-constants';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    accent: '#f1c40f',
+  },
+};
 export default class AppContainer extends React.Component {
   state = {
     expoPushToken: '',
     notification: {},
+    currentUser: {},
   };
 
   registerForPushNotificationsAsync = async () => {
@@ -90,7 +101,11 @@ export default class AppContainer extends React.Component {
   };
 
   render() {
-    return <App />;
+    return (
+      <PaperProvider theme={theme}>
+        <App />
+      </PaperProvider>
+    );
   }
 }
 
