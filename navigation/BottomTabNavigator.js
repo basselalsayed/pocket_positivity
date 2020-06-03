@@ -22,26 +22,26 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={MantrasScreen}
+        component={LinksScreen}
         options={{
-          title: 'Get Started',
+          title: 'Chat',
 
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-code-working" />
+            <TabBarIcon focused={focused} name="md-chatbubbles" />
           ),
         }}
       />
       <BottomTab.Screen
         name="Links"
-        component={LinksScreen}
+        component={MantrasScreen}
         options={{
-          title: 'Resources',
+          title: 'Mantras',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-heart" />
           ),
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Mantras"
         component={MantrasScreen}
         options={{
@@ -50,14 +50,14 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon focused={focused} name="md-book" />
           ),
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name="Notifications"
         component={NotificationsTest}
         options={{
           title: 'Notification',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-notifications" />
           ),
         }}
       />
@@ -67,7 +67,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Mood Charts',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-stats" />
           ),
         }}
       />
@@ -80,12 +80,12 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
+      return 'Chat';
     case 'Links':
-      return 'Links to learn more';
-    case 'Mantras':
-      return 'Review your affirmations';
-    case 'Charts':
-      return 'Review your mood';
+      return 'Mantras';
+    case 'Notifications':
+      return 'Notifications';
+    case 'Mood Charts':
+      return 'Mood Charts';
   }
 }
