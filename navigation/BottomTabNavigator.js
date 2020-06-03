@@ -24,10 +24,10 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={MantrasScreen}
         options={{
-          title: 'Get Started',
+          title: 'Mantras',
 
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-code-working" />
+            <TabBarIcon focused={focused} name="md-book" />
           ),
         }}
       />
@@ -35,13 +35,13 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Links"
         component={LinksScreen}
         options={{
-          title: 'Resources',
+          title: 'Chat',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="Mantras"
         component={MantrasScreen}
         options={{
@@ -50,7 +50,7 @@ export default function BottomTabNavigator({ navigation, route }) {
             <TabBarIcon focused={focused} name="md-book" />
           ),
         }}
-      />
+      /> */}
       <BottomTab.Screen
         name="Notifications"
         component={NotificationsTest}
