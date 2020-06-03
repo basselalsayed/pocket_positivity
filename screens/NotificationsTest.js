@@ -61,10 +61,6 @@ export default class AppContainer extends React.Component {
     this._notificationSubscription = Notifications.addListener(
       this._handleNotification
     );
-    // Notifications.scheduleLocalNotificationAsync(
-    //   { title: 'the title', body: 'this isthe body' },
-    //   { time: new Date().getTime() + 1000, repeat: 'minute' }
-    // );
   }
 
   callMantras = async () => {
@@ -142,22 +138,29 @@ export default class AppContainer extends React.Component {
           justifyContent: 'space-around',
         }}
       >
-        <Button mode="contained" onPress={() => this.sendPushNotification()}>
+        <Button
+          icon="camera"
+          mode="contained"
+          onPress={() => this.sendPushNotification()}
+        >
           Give me a Random Mantra
         </Button>
         <Button
+          icon="clock-fast"
           mode="contained"
           onPress={() => this.setNotificationTimerHour()}
         >
           Send Me a Mantra In an Hour
         </Button>
         <Button
+          icon="calendar-clock"
           mode="contained"
-          onPress={() => this.setNotificationTimerHour()}
+          onPress={() => this.setNotificationTimerDay()}
         >
           Send me a Mantra in a Day
         </Button>
         <Button
+          icon="cancel"
           mode="contained"
           onPress={() => this.cancelNotificationTimers()}
         >
