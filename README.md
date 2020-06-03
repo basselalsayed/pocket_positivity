@@ -10,7 +10,7 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 #### Team Members
 
 Nicolas Raffray - Asia Ellis - Bassel Al-Sayed - David Papamichael - Lucian Boatright - Thomas Walker - Ben Galley
-[Project link](https://github.com/lucianboatright/Vishualizer-Front-End) - asiaellis5 - basselalsayed - davidpaps - lucianboatright - Walker-TW - Benjamaker
+[Nicolas Raffray](https://github.com/nicolasraffray) - [Asia Ellis](https://github.com/asiaellis5) - [David Papamichael](https://github.com/davidpaps) - [Nicolas Raffray](https://github.com/nicolasraffray) - [Nicolas Raffray](https://github.com/nicolasraffray) - [Nicolas Raffray](https://github.com/nicolasraffray) - [Nicolas Raffray](https://github.com/nicolasraffray)
 
 ### Setup
 
