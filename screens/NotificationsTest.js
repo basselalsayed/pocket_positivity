@@ -60,6 +60,10 @@ export default class AppContainer extends React.Component {
     this._notificationSubscription = Notifications.addListener(
       this._handleNotification
     );
+    // Notifications.scheduleLocalNotificationAsync(
+    //   { title: 'the title', body: 'this isthe body' },
+    //   { time: new Date().getTime() + 1000, repeat: 'minute' }
+    // );
   }
 
   callMantras = async () => {
@@ -70,6 +74,17 @@ export default class AppContainer extends React.Component {
       });
 
     this.setState({ mantra: mantra });
+  };
+
+  setNotificationTimer = () => {
+    Notifications.scheduleLocalNotificationAsync(
+      { title: 'the title', body: this.filterMantra(this.state.mantra) },
+      { time: new Date().getTime() + 1000, repeat: 'minute' }
+    );
+  };
+
+  cancelNotificationTimers = () => {
+    Notifications.cancelAllScheduledNotificationsAsync();
   };
 
   _handleNotification = (notification) => {
@@ -124,12 +139,20 @@ export default class AppContainer extends React.Component {
           <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
         </View>
         <Button
-          title={'Press to Send Notification'}
+          title={'Send me a Random Mantra'}
           onPress={() => this.sendPushNotification()}
         />
         <Button
           title={'console.log the state'}
           onPress={() => console.log(this.state.mantra, 'state button press')}
+        />
+        <Button
+          title={'Set a time fo a mantra'}
+          onPress={() => this.setNotificationTimer()}
+        />
+        <Button
+          title={'Cancel all my notifications'}
+          onPress={() => this.cancelNotificationTimers()}
         />
       </View>
     );
