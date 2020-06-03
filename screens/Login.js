@@ -56,7 +56,7 @@ const Login = ({ setAuth }) => {
         label="Email"
         value={email}
         autoFocus={true}
-        autoCompleteType="Email"
+        autoCompleteType="email"
         onChangeText={(input) => setEmail(input)}
       />
       <TextInput
