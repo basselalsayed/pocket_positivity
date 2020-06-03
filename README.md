@@ -10,7 +10,6 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 #### Team Members
 
 Nicolas Raffray - Asia Ellis - Bassel Al-Sayed - David Papamichael - Lucian Boatright - Thomas Walker - Ben Galley
-
 [Nicolas Raffray](https://github.com/nicolasraffray) - [Asia Ellis](https://github.com/asiaellis5) - [Bassel Al-Sayed](https://github.com/basselalsayed)- [David Papamichael](https://github.com/davidpaps) - [Lucian Boatright](https://github.com/lucianboatright) - [Thomas Walker](https://github.com/Walker-TW) - [Ben Galley](https://github.com/benjamaker)
 
 ### Setup
