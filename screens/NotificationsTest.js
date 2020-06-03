@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, Button, Vibration, Platform } from 'react-native';
+import { Text, View, Vibration, Platform } from 'react-native';
 import { Notifications, Device } from 'expo';
 import * as Permissions from 'expo-permissions';
+import { Button } from 'react-native-paper';
 import Constants from 'expo-constants';
 import axios from 'axios';
 
@@ -141,22 +142,27 @@ export default class AppContainer extends React.Component {
           justifyContent: 'space-around',
         }}
       >
+        <Button mode="contained" onPress={() => this.sendPushNotification()}>
+          Give me a Random Mantra
+        </Button>
         <Button
-          title={'Give me a Random Mantra'}
-          onPress={() => this.sendPushNotification()}
-        />
-        <Button
-          title={'Send me a Mantra in a hour'}
+          mode="contained"
           onPress={() => this.setNotificationTimerHour()}
-        />
+        >
+          Send Me a Mantra In an Hour
+        </Button>
         <Button
-          title={'Send me a Mantra in a Day'}
+          mode="contained"
           onPress={() => this.setNotificationTimerHour()}
-        />
+        >
+          Send me a Mantra in a Day
+        </Button>
         <Button
-          title={'Cancel all my notifications'}
+          mode="contained"
           onPress={() => this.cancelNotificationTimers()}
-        />
+        >
+          Cancel all my notifications
+        </Button>
       </View>
     );
   }
