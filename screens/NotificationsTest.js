@@ -76,10 +76,17 @@ export default class AppContainer extends React.Component {
     this.setState({ mantra: mantra });
   };
 
-  setNotificationTimer = () => {
+  setNotificationTimerHour = () => {
     Notifications.scheduleLocalNotificationAsync(
       { title: 'the title', body: this.filterMantra(this.state.mantra) },
-      { time: new Date().getTime() + 1000, repeat: 'minute' }
+      { time: new Date().getTime() + 3600000, repeat: 'hour' }
+    );
+  };
+
+  setNotificationTimerDay = () => {
+    Notifications.scheduleLocalNotificationAsync(
+      { title: 'the title', body: this.filterMantra(this.state.mantra) },
+      { time: new Date().getTime() + 86400000, repeat: 'day' }
     );
   };
 
@@ -134,21 +141,17 @@ export default class AppContainer extends React.Component {
           justifyContent: 'space-around',
         }}
       >
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <Text>Origin: {this.state.notification.origin}</Text>
-          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
-        </View>
         <Button
-          title={'Send me a Random Mantra'}
+          title={'Give me a Random Mantra'}
           onPress={() => this.sendPushNotification()}
         />
         <Button
-          title={'console.log the state'}
-          onPress={() => console.log(this.state.mantra, 'state button press')}
+          title={'Send me a Mantra in a hour'}
+          onPress={() => this.setNotificationTimerHour()}
         />
         <Button
-          title={'Set a time fo a mantra'}
-          onPress={() => this.setNotificationTimer()}
+          title={'Send me a Mantra in a Day'}
+          onPress={() => this.setNotificationTimerHour()}
         />
         <Button
           title={'Cancel all my notifications'}
