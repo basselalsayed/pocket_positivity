@@ -37,7 +37,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Mantras',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-heart" />
+            <TabBarIcon focused={focused} name="md-happy" />
           ),
         }}
       />

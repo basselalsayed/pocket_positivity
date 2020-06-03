@@ -17,52 +17,120 @@ export default function LinksScreen() {
     {
       id: 'checkin',
       component: <MoodInput />,
-      trigger: 'Waiting user input for name',
+      waitAction: true,
+      trigger: 'question',
     },
-
     {
-      id: 'Waiting user input for name',
-      message: 'bye',
+      id: 'question',
+      message: "Would you say you've had a good day today?",
+      trigger: 'questionOptions',
+    },
+    {
+      id: 'questionOptions',
+      options: [
+        { value: 1, label: 'Yes', trigger: 'happy' },
+        { value: 2, label: 'It could have been better', trigger: 'unhappy' },
+      ],
+    },
+    {
+      id: 'happy',
+      message: 'Thats great would you like some self help tips?',
+      trigger: 'happy-options',
+    },
+    {
+      id: 'happy-options',
+
+      options: [
+        {
+          value: 1,
+          label: 'Yes',
+          trigger: 'happy-resources',
+        },
+        { value: 2, label: 'No Thanks :)', trigger: 'happy-end' },
+      ],
+    },
+    {
+      id: 'happy-end',
+      message:
+        'Thanks for coming to talk today, looking forward to speaking soon :)',
       end: true,
     },
-    // {
-    //   id: 'checkin',
-    //   message: `Hi {previousValue}, How are you feeling today?`,
-    //   trigger: 'response',
-    // },
-    // {
-    //   id: 'response',
-    //   options: [
-    //     { value: 1, label: '1', trigger: '' },
-    //     { value: 2, label: '2', trigger: 'addmantra?' },
-    //     { value: 3, label: '3', trigger: '' },
-    //     { value: 4, label: '4', trigger: '' },
-    //     { value: 5, label: '5', trigger: '' },
-    //     { value: 6, label: '6', trigger: '' },
-    //     { value: 7, label: '7', trigger: '' },
-    //     { value: 8, label: '8', trigger: '' },
-    //     { value: 9, label: '9', trigger: '' },
-    //     { value: 10, label: '10', trigger: '' },
-    //   ],
-    // },
-    // {
-    //   id: 'addmantra?',
-    //   message: `Would you like to save a new mantra?`,
-    //   options: [
-    //     { value: 'Yes', label: 'Yes', trigger: 'signup' },
-    //     { value: 'No', label: 'No', trigger: 'Done' },
-    //   ],
-    // },
-    // {
-    //   id: 'signup',
-    //   component: <Text style={styles.optionText}>Hi there</Text>,
-    //   trigger: 'Done',
-    // },
-    // {
-    //   id: 'Done',
-    //   message: 'Have a great day!',
-    //   end: true,
-    // },
+    {
+      id: 'happy-resources',
+      message:
+        'Check out these self care tips from Mind UK for keeping your mood up:\nMind uk (mind.org.uk) suggest some self care tips\nSelf-care\nDoing little things to look after your wellbeing can be really important.\nIt might be:\n* getting enough sleep\n* doing something you find relaxing, like listening to music or watching your favourite film\n* doing something you enjoy, like a favourite hobby or spending time with people you love * spending time in nature, like going for a walk or visiting a local park \n* getting active by going for a run, bike ride or playing a sport you enjoy.',
+      end: true,
+    },
+    {
+      id: 'unhappy',
+      message:
+        "I'm sorry to hear that, which of the following best describes how you're feeling?",
+      trigger: 'unhappyOptions',
+    },
+    {
+      id: 'unhappyOptions',
+      options: [
+        { value: 1, label: "I'm Anxious", trigger: 'anxiousResources' },
+        { value: 2, label: 'Feeling Low', trigger: 'low' },
+      ],
+    },
+    {
+      id: 'anxiousResources',
+      message: 'Would you like self help resources or someone to talk to?',
+      trigger: 'anxious',
+    },
+    {
+      id: 'anxious',
+      options: [
+        { value: 1, label: 'Self Help', trigger: 'anxious-self-help' },
+        {
+          value: 2,
+          label: 'Someone to talk to',
+          trigger: 'anxious-someone-to-talk-to',
+        },
+      ],
+    },
+    {
+      id: 'anxious-someone-to-talk-to',
+      message: `Checkout Anxiety UK:  
+        http://www.anxietyuk.org.uk
+        Phone: 03444 775 774 (Monday to Friday, 9.30am to 10pm; Saturday to Sunday, 10am to 8pm)`,
+      end: true,
+    },
+    {
+      id: 'anxious-self-help',
+      message:
+        'Corona Virus induced anxiety is common check out this blog on how to cope with anxiety in these trying times',
+      end: true,
+    },
+    {
+      id: 'low',
+      message: 'Would you like self help resources or someone to talk to?',
+      trigger: 'low-options',
+    },
+    {
+      id: 'low-options',
+      options: [
+        { value: '1', label: 'Self Help', trigger: 'low-self-help' },
+        {
+          value: '2',
+          label: 'Someone to talk to',
+          trigger: 'low-someone-to-talk-to',
+        },
+      ],
+    },
+    {
+      id: 'low-self-help',
+      message:
+        'Mind uk (mind.org.uk) suggest some self care tips\nSelf-care\nDoing little things to look after your wellbeing can be really important. It might be:\n* getting enough sleep\n* doing something you find relaxing, like listening to music or watching your favourite film\n* doing something you enjoy, like a favourite hobby or spending time with people you love\n* spending time in nature, like going for a walk or visiting a local park\n* getting active by going for a run, bike ride or playing a sport you enjoy.\nThe nhs also has some good tips that can be found here:https://www.nhs.uk/conditions/stress-anxiety-depression/feel-better-and-happy/',
+      end: true,
+    },
+    {
+      id: 'low-someone-to-talk-to',
+      message:
+        'Below is from NHS:\ntry talking about your feelings to a friend, family member, health professional or counsellor.\nYou could also contact Samaritans, call: 116 123 or email: jo@samaritans.org if you need someone to talk to\nBelow is from NHS:\ntry talking about your feelings to a friend, family member, health professional or counsellor.\nYou could also contact Samaritans, call: 116 123 or email: jo@samaritans.org if you need someone to talk to',
+      end: true,
+    },
   ];
 
   return (
