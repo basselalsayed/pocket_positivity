@@ -1,6 +1,7 @@
 ## Pocket Positivity
 
-React navite with expo to launch the app for development.
+#### React navite with expo to launch the app for development.
+
 As a Team this was an entirely new tech stack which had been rapidly learned and implamented over the last two and a half days. In order to aid the project mangment we utalised a few tequniches:
 
 - Pair programing
