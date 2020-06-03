@@ -1,5 +1,5 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as React from "react";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -7,10 +7,10 @@ import ProfileScreen from '../screens/ProfileScreen';
 import LinksScreen from '../screens/LinksScreen';
 import MantrasScreen from '../screens/MantrasScreen';
 import NotificationsTest from '../screens/NotificationsTest';
-import MoodChart from "../screens/MoodChart";
+import MoodChart from '../screens/MoodChart';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = "Home";
+const INITIAL_ROUTE_NAME = 'Home';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -22,7 +22,7 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={ProfileScreen}
+        component={MantrasScreen}
         options={{
           title: 'Get Started',
 
@@ -35,8 +35,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Links"
         component={LinksScreen}
         options={{
-
-          title: "Resources",
+          title: 'Resources',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
@@ -66,7 +65,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Mood Charts"
         component={MoodChart}
         options={{
-          title: "Mood Charts",
+          title: 'Mood Charts',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
@@ -86,7 +85,7 @@ function getHeaderTitle(route) {
       return 'Links to learn more';
     case 'Mantras':
       return 'Review your affirmations';
-    case "Charts":
-      return "Review your mood";
+    case 'Charts':
+      return 'Review your mood';
   }
 }
