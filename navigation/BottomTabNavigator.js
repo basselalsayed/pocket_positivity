@@ -22,22 +22,22 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
         name="Home"
-        component={MantrasScreen}
+        component={LinksScreen}
         options={{
-          title: 'Mantras',
+          title: 'Chat',
 
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-chatbubbles" />
           ),
         }}
       />
       <BottomTab.Screen
         name="Links"
-        component={LinksScreen}
+        component={MantrasScreen}
         options={{
-          title: 'Chat',
+          title: 'Mantras',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-heart" />
           ),
         }}
       />
@@ -57,7 +57,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Notification',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-notifications" />
           ),
         }}
       />
@@ -67,7 +67,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Mood Charts',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
+            <TabBarIcon focused={focused} name="md-stats" />
           ),
         }}
       />
