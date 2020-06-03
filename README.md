@@ -15,21 +15,19 @@ Thomas Walker - Ben Galley
 ### Setup
 
 1. Download Expo on your phone from the app store in order to load the app from the QR code.
-2. To run the program please clone the folowing repositories
+2. Install expo SDK from: https://expo.io/
+3. To run the program please clone the folowing repositories
 
 - Back-end use the follwing link: https://github.com/davidpaps/help_for_heroes_backend
 - Front-end use the followig link: https://github.com/basselalsayed/pocket_positivity
 
-After downloading the both of these into a directory as seperate folders
+4. After downloading the both of these into a directory as seperate folders run package controller install dependancies.
 
-install expo SDK from: https://expo.io/
-
-Front-end
-Setup packeged: Yarn install
-open Expo: expo start
-
-Back-end
-Setup packeged: Yarn install
+- Front-end
+  Setup packeged: Yarn install
+  open Expo: expo start
+- Back-end
+  Setup packeged: Yarn install
 
 ### Features
 
