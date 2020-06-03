@@ -9,15 +9,19 @@ import {
   TextInput,
 } from 'react-native';
 
-const MoodInput = () => {
+const MoodInput = (props) => {
+  const { triggerNextStep } = props;
+
   const [mood, setMood] = useState(5);
   const [shownValue, setShownValue] = useState();
   const [moodComment, setMoodComment] = useState('No comment this time');
   const [buttonColour, setButtonColour] = useState('#2b396b');
+  const [buttonWasPressed, setButtonWasPressed] = useState(false);
+  console.log('props', props);
 
   const postMoodInput = () => {
     axios
-      .post('https://help-for-heroes.herokuapp.com/scores/1', {
+      .post('https://help-for-heroes.herokuapp.com/scores/2', {
         score: mood,
         comment: moodComment,
       })
@@ -25,6 +29,9 @@ const MoodInput = () => {
         alert('Please try again later');
         console.error(error);
       });
+    let nextStep = mood >= 5 ? 'happy' : 'unhappy';
+    triggerNextStep(buttonWasPressed, nextStep);
+    console.log('success', 'anxious-someone-to-talk-to');
   };
 
   return (
@@ -68,9 +75,6 @@ const MoodInput = () => {
           setButtonColour('#780e80');
         }}
       />
-      <Text style={{ fontSize: 20, color: '#2b396b', marginTop: 30 }}>
-        Thank You
-      </Text>
     </View>
   );
 };
@@ -80,7 +84,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 20,
+    height: '15%',
+    // paddingVertical: 20,
     backgroundColor: '#fff',
   },
   title: {
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 20,
     width: 250,
-    height: 200,
+    height: 50,
     borderColor: 'grey',
     borderWidth: 1,
   },
