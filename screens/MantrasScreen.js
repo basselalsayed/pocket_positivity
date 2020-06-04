@@ -36,15 +36,14 @@ const MantrasScreen = () => {
 
   const postMantra = () => {
     axios
-      .post('https://help-for-heroes.herokuapp.com/mantras/', {
-        user_id_fk: '',
+      .post('https://help-for-heroes.herokuapp.com/mantras/1', {
         mantra: formInput,
       })
       .catch((error) => {
         alert('Please try again later');
         console.error(error);
-      })
-      .then((response) => setMantras(response.data));
+      });
+    // .then((response) => setMantras(response.data));
   };
 
   const handleSubmit = () => {
