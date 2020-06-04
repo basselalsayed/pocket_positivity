@@ -14,8 +14,9 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 
 ### Setup
 
-1. Download Expo on your phone from the app store in order to load the app from the QR code.
+1. Download the Expo Client on your phone from the app store in order to load the app from the QR code.
 2. Install expo SDK from: https://expo.io/
+3. Install expo command line interface with: `npm i -g expo-cli`
 3. To run the program clone the following repositories
 
 - Back-end use the following link: https://github.com/davidpaps/help_for_heroes_backend
@@ -23,11 +24,9 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 
 4. After downloading the both of these into a directory as separate folders run package controller install dependancies.
 
-- Front-end
-  Setup packaged: Yarn install
+- Front-end: `expo install`
   open Expo: expo start
-- Back-end
-  Setup packaged: Yarn install
+- Back-end: `yarn install`
 
 ### Features
 
@@ -35,3 +34,7 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 - Ask user for input stating mood and attaching comment.
 - Past inputs can then be collectively viewed to recognise trends for positive or negative emotions over time.
 - The user can interact with a chatbot to represent an empathetic interaction with answers and helpful resources in response to specific answers.
+
+### Acknowledgements
+
+(React-Chatbot-Native)[https://github.com/LucasBassetti/react-native-chatbot] is primarily written and maintained by (Lucas Bassetti)[https://github.com/LucasBassetti]. Expo functionality patched by (Jérémie Zarca)[https://github.com/jzarca01
