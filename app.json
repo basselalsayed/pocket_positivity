@@ -2,11 +2,7 @@
   "expo": {
     "name": "pocket_positivity",
     "slug": "pocket_positivity",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,16 +15,19 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "host.exp.exponent"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "description": "Mental health logger and reminder to aid you maintain improved wellbeing over time. Built in React Native with expo",
-    "githubUrl": "https://github.com/basselalsayed/pocket_positivity"
+    "githubUrl": "https://github.com/basselalsayed/pocket_positivity",
+    "android": {
+      "package": "host.exp.exponent"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
