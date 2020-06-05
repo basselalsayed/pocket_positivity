@@ -1,4 +1,4 @@
-## Pocket Positivity
+## Pocket Positivity [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/basselalsayed/pocket-positivity)
 
 #### A Native app built with React Native and Expo built in a 3 day Hackathon to help Key Workers!
 
@@ -24,9 +24,12 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 
 4. After downloading the both of these into a directory as separate folders run package controller install dependancies.
 
-- Front-end: `expo install`
-  open Expo: expo start
+- Front-end: try `expo install` else `yarn` or `npm i`
+- Start Expo: `expo start` follow in-browser instructions
+
+If servers are down you can change api routes to a local backend and run local server with:
 - Back-end: `yarn install`
+- `nodemon index.js`
 
 ### Features
 
@@ -37,4 +40,4 @@ As a Team this was an entirely new tech stack which had been rapidly learned and
 
 ### Acknowledgements
 
-(React-Chatbot-Native)[https://github.com/LucasBassetti/react-native-chatbot] is primarily written and maintained by (Lucas Bassetti)[https://github.com/LucasBassetti]. Expo functionality patched by (Jérémie Zarca)[https://github.com/jzarca01
+[React-Chatbot-Native](https://github.com/LucasBassetti/react-native-chatbot) is primarily written and maintained by [Lucas Bassetti](https://github.com/LucasBassetti). Expo functionality patched by [Jérémie Zarca](https://github.com/jzarca01)
