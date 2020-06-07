@@ -1,16 +1,9 @@
 import * as WebBrowser from 'expo-web-browser';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Title, TextInput } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -35,21 +28,27 @@ const MantrasScreen = () => {
   }, []);
 
   const postMantra = () => {
-    axios
-      .post('https://help-for-heroes.herokuapp.com/mantras/', {
-        user_id_fk: '',
-        mantra: formInput,
-      })
-      .catch((error) => {
-        alert('Please try again later');
-        console.error(error);
-      })
-      .then((response) => setMantras(response.data));
+    // axios
+    //   .post('https://help-for-heroes.herokuapp.com/mantras/', {
+    //     user_id_fk: '',
+    //     mantra: formInput,
+    //   })
+    //   .catch((error) => {
+    //     alert('Please try again later');
+    //     console.error(error);
+    //   })
+    //   .then((response) => setMantras(response.data));
+
+    const newMantra = { mantra: formInput };
+    const newMantras = [...mantras, newMantra];
+
+    setMantras(newMantras);
+    setFormInput('');
   };
 
   const handleSubmit = () => {
     postMantra();
-    getMantras();
+    // getMantras();
   };
 
   return (
@@ -67,15 +66,7 @@ const MantrasScreen = () => {
           <Button onPress={handleSubmit}>Submit</Button>
         </View>
         <View>
-          {mantras.map((mantra) => {
-            return (
-              <Card key={mantra.mantra_id} style={styles.mantraContainer}>
-                <Card.Content>
-                  <Title children={mantra.mantra} />
-                </Card.Content>
-              </Card>
-            );
-          })}
+          <Mantras mantras={mantras} />
         </View>
       </ScrollView>
     </View>
