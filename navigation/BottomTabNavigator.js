@@ -21,6 +21,17 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: 'Profile',
+
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-person" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
         name="Home"
         component={LinksScreen}
         options={{
@@ -32,7 +43,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Links"
+        name="Mantras"
         component={MantrasScreen}
         options={{
           title: 'Mantras',

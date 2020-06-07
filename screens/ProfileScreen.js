@@ -21,7 +21,7 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        {/* <SignUp /> */}
+        <SignUp />
         <View style={styles.welcomeContainer}>
           <Image
             source={
