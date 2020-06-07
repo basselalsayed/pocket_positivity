@@ -5,6 +5,7 @@ import * as Permissions from 'expo-permissions';
 import App from './App';
 import Constants from 'expo-constants';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 const theme = {
   ...DefaultTheme,
@@ -28,12 +29,12 @@ export default class AppContainer extends React.Component {
       Constants.isDevice
     ) {
       const { status: existingStatus } = await Permissions.getAsync(
-        Permissions.NOTIFICATIONS
+        Permissions.NOTIFICATIONS,
       );
       let finalStatus = existingStatus;
       if (existingStatus !== 'granted') {
         const { status } = await Permissions.askAsync(
-          Permissions.NOTIFICATIONS
+          Permissions.NOTIFICATIONS,
         );
         finalStatus = status;
       }
@@ -67,11 +68,11 @@ export default class AppContainer extends React.Component {
     // this function will fire on the next tick after the app starts
     // with the notification data.
     this._notificationSubscription = Notifications.addListener(
-      this._handleNotification
+      this._handleNotification,
     );
   }
 
-  _handleNotification = (notification) => {
+  _handleNotification = notification => {
     Vibration.vibrate();
     console.log(notification), 'this is the notification';
     this.setState({ notification: notification });

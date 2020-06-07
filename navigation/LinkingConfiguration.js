@@ -6,7 +6,8 @@ export default {
     Root: {
       path: 'root',
       screens: {
-        Home: 'home',
+        Profile: 'profile',
+        Chat: 'chat',
         Mantras: 'mantras',
         Notifications: 'notifications',
         Stats: 'stats',

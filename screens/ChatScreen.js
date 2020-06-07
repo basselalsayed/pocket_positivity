@@ -7,7 +7,7 @@ import MyComponent from '../components/Forms/NewMantra';
 
 import ChatBot from 'react-native-chatbot-expo';
 import MoodInput from '../components/MoodInput';
-export default function LinksScreen() {
+export default function ChatScreen() {
   const steps = [
     {
       id: 'welcome',

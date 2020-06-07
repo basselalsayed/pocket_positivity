@@ -1,73 +1,137 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
 
+import { withFirebase } from '../Firebase';
+
 import { Button, Card, TextInput } from 'react-native-paper';
 
-const SignUp = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import 'firebase/auth';
 
-  const apiPost = () => {
-    axios
-      .post('https://help-for-heroes.herokuapp.com/users', {
-        username: username,
-        email: email,
-        password: password,
+const INITIAL_STATE = {
+  username: '',
+  email: '',
+  passwordOne: '',
+  passwordTwo: '',
+  error: null,
+};
+
+class SignUp extends Component {
+  // const { firebase } = props;
+  // const [username, setUsername] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE };
+  }
+  // const apiPost = () => {
+  //   axios
+  //     .post('https://help-for-heroes.herokuapp.com/users', {
+  //       username: username,
+  //       email: email,
+  //       password: password,
+  //     })
+  //     .then(response => {
+  //       console.log(response);
+  //       alert('Success');
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       alert('Please try again later.');
+  //     });
+  // };
+
+  // const wipeForm = () => {
+  //   setUsername('');
+  //   setEmail('');
+  //   setPassword('');
+  // };
+
+  // const handleSubmit = () => {
+  //   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //   if (reg.test(email) === true) {
+  //     apiPost();
+  //     wipeForm();
+  //   } else {
+  //     alert('Please enter a valid email address');
+  //   }
+  // };
+
+  handleSubmit = () => {
+    const { username, email, passwordOne } = this.state;
+
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        // wipeForm();
+        this.setState({ ...INITIAL_STATE });
       })
-      .then((response) => {
-        console.log(response);
-        alert('Success');
-      })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-        alert('Please try again later.');
       });
   };
 
-  const wipeForm = () => {
-    setUsername('');
-    setEmail('');
-    setPassword('');
+  handleChange = e => {
+    this.setState({ [e]: e });
   };
 
-  const handleSubmit = () => {
-    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(email) === true) {
-      apiPost();
-      wipeForm();
-    } else {
-      alert('Please enter a valid email address');
-    }
-  };
+  render() {
+    const { username, email, passwordOne, passwordTwo, error } = this.state;
 
-  return (
-    <Card>
-      <TextInput
-        label="Username"
-        value={username}
-        autoFocus={true}
-        autoCompleteType="username"
-        onChangeText={(input) => setUsername(input)}
-      />
-      <TextInput
-        label="Email Address"
-        value={email}
-        textCompleteType="email"
-        autoCompleteType="email"
-        onChangeText={(input) => setEmail(input)}
-      />
-      <TextInput
-        label="Password"
-        value={password}
-        textContentType="newPassword"
-        passwordRules="required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;"
-        onChangeText={(input) => setPassword(input)}
-      />
-      <Button onPress={handleSubmit}>Submit</Button>
-    </Card>
-  );
-};
+    const isInvalid =
+      passwordOne !== passwordTwo ||
+      passwordOne === '' ||
+      email === '' ||
+      username === '';
 
-export default SignUp;
+    return (
+      <Card>
+        <TextInput
+          name='username'
+          label='Username'
+          value={username}
+          autoFocus={true}
+          autocompletetype='username'
+          // onChangeText={input => setUsername(input)}
+          onChangeText={input => this.setState({ username: input })}
+        />
+        <TextInput
+          name='email'
+          label='Email Address'
+          value={email}
+          textCompleteType='email'
+          autocompletetype='email'
+          // onChangeText={input => setEmail(input)}
+          onChangeText={input => this.setState({ email: input })}
+        />
+        <TextInput
+          name='passwordOne'
+          label='Password'
+          value={passwordOne}
+          textcontenttype='newPassword'
+          passwordrules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
+          // onChangeText={input => setPassword(input)}
+          onChangeText={input => this.setState({ passwordOne: input })}
+        />
+        <TextInput
+          name='passwordTwo'
+          label='Confirm Password'
+          value={passwordTwo}
+          textcontenttype='newPassword'
+          passwordrules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
+          // onChangeText={input => setPassword(input)}
+          onChangeText={input => this.setState({ passwordTwo: input })}
+        />
+        <Button disabled={isInvalid} onPress={this.handleSubmit}>
+          Submit
+        </Button>
+        {error && <Text>{error.message}</Text>}
+      </Card>
+    );
+  }
+}
+
+export const SignUpForm = withFirebase(SignUp);
+export default SignUpForm;

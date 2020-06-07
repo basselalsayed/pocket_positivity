@@ -12,7 +12,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { MonoText } from '../components/StyledText';
 
-import SignUp from '../components/Forms/SignUp';
+import SignUpForm from '../components/Forms/SignUp';
 
 export default function HomeScreen() {
   return (
@@ -21,7 +21,7 @@ export default function HomeScreen() {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <SignUp />
+        <SignUpForm />
         <View style={styles.welcomeContainer}>
           <Image
             source={
@@ -33,10 +33,6 @@ export default function HomeScreen() {
           />
         </View>
 
-        <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-        </View>
-
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
@@ -45,20 +41,6 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}
-        >
-          <MonoText style={styles.codeHighlightText}>
-            navigation/BottomTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
     </View>
   );
 }
@@ -92,13 +74,13 @@ function DevelopmentModeNotice() {
 
 function handleLearnMorePress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/workflow/development-mode/'
+    'https://docs.expo.io/versions/latest/workflow/development-mode/',
   );
 }
 
 function handleHelpPress() {
   WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
+    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change',
   );
 }
 

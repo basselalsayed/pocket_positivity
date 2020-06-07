@@ -15,10 +15,10 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 // import * as AppAuth from 'expo-app-auth';
-
+import Firebase, { FirebaseContext } from './components/Firebase';
 const Stack = createStackNavigator();
 
-export default function App(props) {
+export default function App() {
   const isLoadingComplete = useCachedResources();
   const [auth, setAuth] = useState(false);
 
@@ -32,59 +32,53 @@ export default function App(props) {
   //     }
   //   })();
   // }, []);
-
-  const showLogin = () => {
-    if (auth === true) {
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-          <NavigationContainer linking={LinkingConfiguration}>
-            <Stack.Navigator>
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </View>
-      );
-    } else {
-      return <Login setAuth={setAuth} />;
-    }
-  };
+  const AppScreen = (
+    <View style={styles.container}>
+      {Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
+      <NavigationContainer linking={LinkingConfiguration}>
+        <Stack.Navigator>
+          <Stack.Screen name='Root' component={BottomTabNavigator} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
+  );
 
   if (!isLoadingComplete) {
     return null;
   } else {
-    {
-      console.log(auth);
-    }
-    return showLogin();
-    // <View style={styles.container}>
-    //   {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-    //   <NavigationContainer linking={LinkingConfiguration}>
-    //     <Stack.Navigator>
-    //       <Stack.Screen name="Root" component={BottomTabNavigator} />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </View>
-    // <View style={styles.container}>
-    //   <Text>Expo AppAuth Example</Text>
-    //   <Button
-    //     title="Sign In with Google "
-    //     onPress={async () => {
-    //       const _authState = await signInAsync();
-    //       setAuthState(_authState);
-    //     }}
-    //   />
-    //   <Button
-    //     title="Sign Out "
-    //     onPress={async () => {
-    //       await signOutAsync(authState);
-    //       setAuthState(null);
-    //     }}
-    //   />
-    //   <Text>{JSON.stringify(authState, null, 2)}</Text>
-    // </View>
-    // );
+    return (
+      <FirebaseContext.Provider value={new Firebase()}>
+        {auth ? AppScreen : <Login setAuth={setAuth} />}
+      </FirebaseContext.Provider>
+    );
   }
+  // <View style={styles.container}>
+  //   {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+  //   <NavigationContainer linking={LinkingConfiguration}>
+  //     <Stack.Navigator>
+  //       <Stack.Screen name="Root" component={BottomTabNavigator} />
+  //     </Stack.Navigator>
+  //   </NavigationContainer>
+  // </View>
+  // <View style={styles.container}>
+  //   <Text>Expo AppAuth Example</Text>
+  //   <Button
+  //     title="Sign In with Google "
+  //     onPress={async () => {
+  //       const _authState = await signInAsync();
+  //       setAuthState(_authState);
+  //     }}
+  //   />
+  //   <Button
+  //     title="Sign Out "
+  //     onPress={async () => {
+  //       await signOutAsync(authState);
+  //       setAuthState(null);
+  //     }}
+  //   />
+  //   <Text>{JSON.stringify(authState, null, 2)}</Text>
+  // </View>
+  // );
 }
 
 const styles = StyleSheet.create({

@@ -2,15 +2,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ChatScreen from '../screens/ChatScreen';
 import MantrasScreen from '../screens/MantrasScreen';
 import NotificationsTest from '../screens/NotificationsTest';
 import MoodChart from '../screens/MoodChart';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Chat';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
@@ -21,7 +20,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Profile"
+        name="Account"
         component={ProfileScreen}
         options={{
           title: 'Profile',
@@ -32,8 +31,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
       <BottomTab.Screen
-        name="Home"
-        component={LinksScreen}
+        name="Chats"
+        component={ChatScreen}
         options={{
           title: 'Chat',
 
@@ -52,16 +51,6 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
-      {/* <BottomTab.Screen
-        name="Mantras"
-        component={MantrasScreen}
-        options={{
-          title: 'Mantras',
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-book" />
-          ),
-        }}
-      /> */}
       <BottomTab.Screen
         name="Notifications"
         component={NotificationsTest}
