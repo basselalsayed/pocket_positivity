@@ -1,12 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import axios from 'axios';
 
 import { withFirebase } from '../Firebase';
 
 import { Button, Card, TextInput } from 'react-native-paper';
-
-import 'firebase/auth';
 
 const INITIAL_STATE = {
   username: '',
@@ -17,47 +14,11 @@ const INITIAL_STATE = {
 };
 
 class SignUp extends Component {
-  // const { firebase } = props;
-  // const [username, setUsername] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   constructor(props) {
     super(props);
 
     this.state = { ...INITIAL_STATE };
   }
-  // const apiPost = () => {
-  //   axios
-  //     .post('https://help-for-heroes.herokuapp.com/users', {
-  //       username: username,
-  //       email: email,
-  //       password: password,
-  //     })
-  //     .then(response => {
-  //       console.log(response);
-  //       alert('Success');
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       alert('Please try again later.');
-  //     });
-  // };
-
-  // const wipeForm = () => {
-  //   setUsername('');
-  //   setEmail('');
-  //   setPassword('');
-  // };
-
-  // const handleSubmit = () => {
-  //   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  //   if (reg.test(email) === true) {
-  //     apiPost();
-  //     wipeForm();
-  //   } else {
-  //     alert('Please enter a valid email address');
-  //   }
-  // };
 
   handleSubmit = () => {
     const { username, email, passwordOne } = this.state;
@@ -65,16 +26,11 @@ class SignUp extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        // wipeForm();
         this.setState({ ...INITIAL_STATE });
       })
       .catch(error => {
         console.log(error);
       });
-  };
-
-  handleChange = e => {
-    this.setState({ [e]: e });
   };
 
   render() {
@@ -94,16 +50,14 @@ class SignUp extends Component {
           value={username}
           autoFocus={true}
           autocompletetype='username'
-          // onChangeText={input => setUsername(input)}
           onChangeText={input => this.setState({ username: input })}
         />
         <TextInput
           name='email'
           label='Email Address'
           value={email}
-          textCompleteType='email'
+          textcompletetype='email'
           autocompletetype='email'
-          // onChangeText={input => setEmail(input)}
           onChangeText={input => this.setState({ email: input })}
         />
         <TextInput
@@ -112,7 +66,6 @@ class SignUp extends Component {
           value={passwordOne}
           textcontenttype='newPassword'
           passwordrules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
-          // onChangeText={input => setPassword(input)}
           onChangeText={input => this.setState({ passwordOne: input })}
         />
         <TextInput
@@ -121,7 +74,6 @@ class SignUp extends Component {
           value={passwordTwo}
           textcontenttype='newPassword'
           passwordrules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
-          // onChangeText={input => setPassword(input)}
           onChangeText={input => this.setState({ passwordTwo: input })}
         />
         <Button disabled={isInvalid} onPress={this.handleSubmit}>
