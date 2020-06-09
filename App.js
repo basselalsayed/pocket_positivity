@@ -1,22 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import {
-  Platform,
-  StatusBar,
-  Text,
-  Button,
-  StyleSheet,
-  View,
-} from 'react-native';
-import Login from './screens/Login';
 
 import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 import Firebase, { FirebaseContext } from './components/Firebase';
-const Stack = createStackNavigator();
+import DashboardScreen from './screens/Dashboard';
+import LoadingScreen from './screens/LoadingScreen';
+import LoginScreen from './screens/LoginScreen';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -32,90 +23,20 @@ export default function App() {
   //     }
   //   })();
   // }, []);
-  const AppScreen = (
-    <View style={styles.container}>
-      {Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
-      <NavigationContainer linking={LinkingConfiguration}>
-        <Stack.Navigator>
-          <Stack.Screen name='Root' component={BottomTabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
-  );
+
+  // const AppSwitchNavigator = createStackNavigator({
+  //   LoadingScreen: LoadingScreen,
+  //   LoginScreen: LoginScreen,
+  //   DashboardScreen: DashboardScreen,
+  // });
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
       <FirebaseContext.Provider value={new Firebase()}>
-        {auth ? AppScreen : <Login setAuth={setAuth} />}
+        {auth ? <DashboardScreen /> : <LoginScreen setAuth={setAuth} />}
       </FirebaseContext.Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
-
-// let config = {
-//   issuer: 'https://accounts.google.com',
-//   scopes: ['openid', 'profile'],
-//   /* This is the CLIENT_ID generated from a Firebase project */
-//   clientId:
-//     '603386649315-vp4revvrcgrcjme51ebuhbkbspl048l9.apps.googleusercontent.com',
-// };
-
-// let StorageKey = '@MyApp:CustomGoogleOAuthKey';
-
-// export async function signInAsync() {
-//   let authState = await AppAuth.authAsync(config);
-//   await cacheAuthAsync(authState);
-//   console.log('signInAsync', authState);
-//   return authState;
-// }
-
-// async function cacheAuthAsync(authState) {
-//   return await AsyncStorage.setItem(StorageKey, JSON.stringify(authState));
-// }
-
-// export async function getCachedAuthAsync() {
-//   let value = await AsyncStorage.getItem(StorageKey);
-//   let authState = JSON.parse(value);
-//   console.log('getCachedAuthAsync', authState);
-//   if (authState) {
-//     if (checkIfTokenExpired(authState)) {
-//       return refreshAuthAsync(authState);
-//     } else {
-//       return authState;
-//     }
-//   }
-//   return null;
-// }
-
-// function checkIfTokenExpired({ accessTokenExpirationDate }) {
-//   return new Date(accessTokenExpirationDate) < new Date();
-// }
-
-// async function refreshAuthAsync({ refreshToken }) {
-//   let authState = await AppAuth.refreshAsync(config, refreshToken);
-//   console.log('refreshAuth', authState);
-//   await cacheAuthAsync(authState);
-//   return authState;
-// }
-
-// export async function signOutAsync({ accessToken }) {
-//   try {
-//     await AppAuth.revokeAsync(config, {
-//       token: accessToken,
-//       isClientIdProvided: true,
-//     });
-//     await AsyncStorage.removeItem(StorageKey);
-//     return null;
-//   } catch (e) {
-//     alert(`Failed to revoke token: ${e.message}`);
-//   }
-// }

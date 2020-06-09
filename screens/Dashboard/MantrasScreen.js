@@ -7,8 +7,8 @@ import { Platform, StyleSheet, View } from 'react-native';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-import NewMantra from '../components/Forms/NewMantra';
-import Mantras from '../components/Mantras';
+import NewMantra from '../../components/Forms/NewMantra';
+import Mantras from '../../components/Mantras';
 
 const MantrasScreen = () => {
   const [mantras, setMantras] = useState([]);
@@ -17,8 +17,8 @@ const MantrasScreen = () => {
   const getMantras = () => {
     axios
       .get('https://help-for-heroes.herokuapp.com/mantras')
-      .then((response) => setMantras(response.data))
-      .catch((error) => {
+      .then(response => setMantras(response.data))
+      .catch(error => {
         console.error(error);
       });
   };
@@ -59,9 +59,9 @@ const MantrasScreen = () => {
       >
         <View>
           <TextInput
-            label="Enter a new Mantra..."
+            label='Enter a new Mantra...'
             value={formInput}
-            onChangeText={(formInput) => setFormInput(formInput)}
+            onChangeText={formInput => setFormInput(formInput)}
           />
           <Button onPress={handleSubmit}>Submit</Button>
         </View>

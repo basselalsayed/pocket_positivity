@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { Button, Card, TextInput } from 'react-native-paper';
 
-const Login = ({ setAuth }) => {
+const LoginScreen = ({ setAuth }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,11 +15,11 @@ const Login = ({ setAuth }) => {
         username: username,
         password: password,
       })
-      .then((response) => {
+      .then(response => {
         // console.log(response);
         // // alert('Success');
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         alert('Please try again later.');
       });
@@ -46,30 +46,30 @@ const Login = ({ setAuth }) => {
   return (
     <Card>
       <TextInput
-        label="Username"
+        label='Username'
         value={username}
         autoFocus={true}
-        autoCompleteType="username"
-        onChangeText={(input) => setUsername(input)}
+        autoCompleteType='username'
+        onChangeText={input => setUsername(input)}
       />
       <TextInput
-        label="Email"
+        label='Email'
         value={email}
         autoFocus={true}
-        autoCompleteType="email"
-        onChangeText={(input) => setEmail(input)}
+        autoCompleteType='email'
+        onChangeText={input => setEmail(input)}
       />
       <TextInput
         secureTextEntry={true}
-        label="Password"
+        label='Password'
         value={password}
-        textContentType="newPassword"
-        passwordRules="required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;"
-        onChangeText={(input) => setPassword(input)}
+        textContentType='newPassword'
+        passwordRules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
+        onChangeText={input => setPassword(input)}
       />
       <Button onPress={handleSubmit}>Submit</Button>
     </Card>
   );
 };
 
-export default Login;
+export default LoginScreen;

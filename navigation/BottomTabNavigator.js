@@ -2,11 +2,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
-import ProfileScreen from '../screens/ProfileScreen';
-import ChatScreen from '../screens/ChatScreen';
-import MantrasScreen from '../screens/MantrasScreen';
-import NotificationsTest from '../screens/NotificationsTest';
-import MoodChart from '../screens/MoodChart';
+import ProfileScreen from '../screens/Dashboard/ProfileScreen';
+import ChatScreen from '../screens/Dashboard/ChatScreen';
+import MantrasScreen from '../screens/Dashboard/MantrasScreen';
+import NotificationsTest from '../screens/Dashboard/NotificationsTest';
+import MoodChart from '../screens/Dashboard/MoodChart';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Chat';
@@ -20,54 +20,54 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Account"
+        name='Account'
         component={ProfileScreen}
         options={{
           title: 'Profile',
 
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-person" />
+            <TabBarIcon focused={focused} name='md-person' />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Chats"
+        name='Chats'
         component={ChatScreen}
         options={{
           title: 'Chat',
 
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-chatbubbles" />
+            <TabBarIcon focused={focused} name='md-chatbubbles' />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Mantras"
+        name='Mantras'
         component={MantrasScreen}
         options={{
           title: 'Mantras',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-happy" />
+            <TabBarIcon focused={focused} name='md-happy' />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Notifications"
+        name='Notifications'
         component={NotificationsTest}
         options={{
           title: 'Notification',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-notifications" />
+            <TabBarIcon focused={focused} name='md-notifications' />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Mood Charts"
+        name='Mood Charts'
         component={MoodChart}
         options={{
           title: 'Mood Charts',
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="md-stats" />
+            <TabBarIcon focused={focused} name='md-stats' />
           ),
         }}
       />
