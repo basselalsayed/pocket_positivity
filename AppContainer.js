@@ -5,7 +5,6 @@ import * as Permissions from 'expo-permissions';
 import App from './App';
 import Constants from 'expo-constants';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import Firebase, { FirebaseContext } from './components/Firebase';
 
 const theme = {
   ...DefaultTheme,
@@ -16,12 +15,18 @@ const theme = {
     accent: '#f1c40f',
   },
 };
+
+const INITIAL_STATE = {
+  expoPushToken: '',
+  notification: {},
+  currentUser: {},
+};
 export default class AppContainer extends React.Component {
-  state = {
-    expoPushToken: '',
-    notification: {},
-    currentUser: {},
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = { ...INITIAL_STATE };
+  }
 
   registerForPushNotificationsAsync = async () => {
     if (
@@ -87,4 +92,4 @@ export default class AppContainer extends React.Component {
   }
 }
 
-registerRootComponent(AppContainer);
+// registerRootComponent(AppContainer);

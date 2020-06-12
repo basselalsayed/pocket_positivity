@@ -4,39 +4,30 @@ import React, { useEffect, useState } from 'react';
 
 import useCachedResources from './hooks/useCachedResources';
 
-import Firebase, { FirebaseContext } from './components/Firebase';
-import DashboardScreen from './screens/Dashboard';
-import LoadingScreen from './screens/LoadingScreen';
-import LoginScreen from './screens/LoginScreen';
+import Firebase, { withFirebase, FirebaseContext } from './components/Firebase';
 
-export default function App() {
+import { LoadingScreen } from './screens';
+
+import { ClippingRectangle } from 'react-native';
+import AuthenticationNavigation from './navigation/AuthenticationNavigation';
+import { withAuthentication } from './components/Session';
+
+const App = props => {
   const isLoadingComplete = useCachedResources();
-  const [auth, setAuth] = useState(false);
+
+  // const [firebase, setFirebase] = useState(Firebase);
 
   // let [authState, setAuthState] = useState(null);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let cachedAuth = await getCachedAuthAsync();
-  //     if (cachedAuth && !authState) {
-  //       setAuthState(cachedAuth);
-  //     }
-  //   })();
-  // }, []);
-
-  // const AppSwitchNavigator = createStackNavigator({
-  //   LoadingScreen: LoadingScreen,
-  //   LoginScreen: LoginScreen,
-  //   DashboardScreen: DashboardScreen,
-  // });
-
   if (!isLoadingComplete) {
-    return null;
+    return <LoadingScreen />;
   } else {
     return (
-      <FirebaseContext.Provider value={new Firebase()}>
-        {auth ? <DashboardScreen /> : <LoginScreen setAuth={setAuth} />}
+      <FirebaseContext.Provider value={Firebase}>
+        <AuthenticationNavigation />
       </FirebaseContext.Provider>
     );
   }
-}
+};
+
+export default withAuthentication(App);

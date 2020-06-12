@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import axios from 'axios';
-
+import LoginForm from '../components/Forms/Login';
 import { Button, Card, TextInput } from 'react-native-paper';
 
 const LoginScreen = ({ setAuth }) => {
@@ -43,33 +43,34 @@ const LoginScreen = ({ setAuth }) => {
     wipeForm();
   };
 
-  return (
-    <Card>
-      <TextInput
-        label='Username'
-        value={username}
-        autoFocus={true}
-        autoCompleteType='username'
-        onChangeText={input => setUsername(input)}
-      />
-      <TextInput
-        label='Email'
-        value={email}
-        autoFocus={true}
-        autoCompleteType='email'
-        onChangeText={input => setEmail(input)}
-      />
-      <TextInput
-        secureTextEntry={true}
-        label='Password'
-        value={password}
-        textContentType='newPassword'
-        passwordRules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
-        onChangeText={input => setPassword(input)}
-      />
-      <Button onPress={handleSubmit}>Submit</Button>
-    </Card>
-  );
+  return <LoginForm />;
+  // return (
+  //   <Card>
+  //     <TextInput
+  //       label='Username'
+  //       value={username}
+  //       autoFocus={true}
+  //       autoCompleteType='username'
+  //       onChangeText={input => setUsername(input)}
+  //     />
+  //     <TextInput
+  //       label='Email'
+  //       value={email}
+  //       autoFocus={true}
+  //       autoCompleteType='email'
+  //       onChangeText={input => setEmail(input)}
+  //     />
+  //     <TextInput
+  //       secureTextEntry={true}
+  //       label='Password'
+  //       value={password}
+  //       textContentType='newPassword'
+  //       passwordRules='required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 20;'
+  //       onChangeText={input => setPassword(input)}
+  //     />
+  //     <Button onPress={handleSubmit}>Submit</Button>
+  //   </Card>
+  // );
 };
 
-export default LoginScreen;
+export { LoginScreen };
