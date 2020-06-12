@@ -1,3 +1,3 @@
-export * from './Dashboard';
+export * from './Dashboard/Index';
 export * from './LoginScreen';
 export * from './LoadingScreen';

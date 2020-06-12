@@ -91,5 +91,3 @@ export default class AppContainer extends React.Component {
     );
   }
 }
-
-// registerRootComponent(AppContainer);

@@ -6,7 +6,7 @@ import useCachedResources from './hooks/useCachedResources';
 
 import Firebase, { withFirebase, FirebaseContext } from './components/Firebase';
 
-import { LoadingScreen } from './screens';
+import { LoadingScreen } from './screens/Index';
 
 import { ClippingRectangle } from 'react-native';
 import AuthenticationNavigation from './navigation/AuthenticationNavigation';

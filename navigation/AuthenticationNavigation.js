@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AuthUserContext, withAuthentication } from '../components/Session';
-import { DashboardScreen, LoginScreen } from '../screens';
+import { DashboardScreen, LoginScreen } from '../screens/Index';
 
 const AuthenticationNavigation = props => {
   return (
